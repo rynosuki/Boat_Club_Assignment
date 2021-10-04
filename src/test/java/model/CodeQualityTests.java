@@ -1,3 +1,5 @@
+package model;
+
 // This work is licensed under a CC BY 4.0 license. https://creativecommons.org/licenses/by/4.0/
 
 import org.w3c.dom.Document;

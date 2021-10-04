@@ -9,9 +9,9 @@ public class SimpleTest {
 
   @Test
   public void testMessageLengthGreaterThanZero() {
-    Boat sut = new Boat();
+    Boat sut = new Boat(0, null, 0);
 
-    assertTrue(sut.getMessage().length() > 0, "Message length should be greater that zero");
+    assertTrue(sut.getLength() > 0, "Message length should be greater that zero");
   }
   
 }
