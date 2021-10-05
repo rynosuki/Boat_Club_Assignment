@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.Boat;
 import model.Member;
+import model.MemberID;
 import view.MemberView;
 
 
@@ -34,16 +35,16 @@ public class MemberController {
     return model.getName();
   }
 
-  public void setMemberPersonalNumber(long personalNumber) {
+  public void setMemberPersonalNumber(String personalNumber) {
     model.setPersonalNumber(personalNumber);
   }
 
-  public long getMemberPersonalNumber() {
+  public String getMemberPersonalNumber() {
     return model.getPersonalNumber();
   }
 
-  public boolean addMember(String name, long personalNumber, String memberID) {
-    Member tempModel = new Member(name, personalNumber, memberID);
+  public boolean addMember(String name, String personalNumber) {
+    Member tempModel = new Member(name, personalNumber, new MemberID().generateMemberID(name, members));
     for (int i = 0; i < members.size(); i++){
       if (members.get(i).getPersonalNumber() == personalNumber) {
         return false;
@@ -57,21 +58,13 @@ public class MemberController {
     this.view.printView();
   }
 
-  public void printCompactList() {
-    // this.view.showCompactList;
-  }
-
-  public void printVerboseList() {
-    // this.view.showVerboseList;
-  }
-
   public String getMemberID() {
     return model.getMemberID();
   }
 
-  public boolean deleteMember(Long personalNumber) {
+  public boolean deleteMember(String personalNumber) {
     for (int j = 0; j < members.size(); j++) {
-      if (members.get(j).getPersonalNumber() == personalNumber) {
+      if (members.get(j).getPersonalNumber().equals(personalNumber)) {
         members.remove(j);
         return true;
       }
@@ -106,9 +99,7 @@ public class MemberController {
     view.printMessage(message);
   }
 
-  public void printMembers() {
-    for (int i = 0; i < members.size(); i++) {
-      view.printMessage(members.get(i).getPersonalNumber());
-    }
+  public void printMemberIDs() {
+    view.printMemberList(this.members);
   }
 }

@@ -28,4 +28,10 @@ public class MemberView implements View {
   public void printMessage(long message) {
     System.out.println(message);
   }
+
+  public void printMemberList(ArrayList<Member> list) {
+    for (int i = 0; i < list.size(); i++) {
+      System.out.println(i + " " + list.get(i).getName() + " " + list.get(i).getMemberID());
+    }
+  }
 }

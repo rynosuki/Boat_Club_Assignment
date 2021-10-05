@@ -60,33 +60,40 @@ public class MenuController {
     String temp;
     switch (choice) {
       case 1:
-        mcontroller.printMessage("Enter the member data: (name,personalnumber,memberid");
+        mcontroller.printMessage("Enter the member data: (name,personalnumber");
         temp = input.getInputString();
         String[] tempList = temp.split(",");
-        //boolean c = mcontroller.addMember(tempList[0], Long.parseLong(tempList[1]), Integer.parseInt(tempList[2]));
-        // if (c == true) {
-        //   mcontroller.printMessage("Member successfully added.");
-        //   mcontroller.printMembers();
-        //   break;
-        // } else {
-        //   memberChoice(1);
-        // }
+        boolean c = mcontroller.addMember(tempList[0], tempList[1]);
+        if (c == true) {
+          mcontroller.printMessage("Member successfully added.");
+          mcontroller.printMemberIDs();
+          break;
+        } else {
+          memberChoice(1);
+        }
         break;
       case 2:
         mcontroller.printMessage("Enter personalnumber to delete:");
         temp = input.getInputString();
         bcontroller.printMessage("Do you really want to delete? Y/N");
         if (input.getInputString().equals("Y")){
-          if (mcontroller.deleteMember(Long.parseLong(temp)) == false) {
+          if (mcontroller.deleteMember(temp) == false) {
             mcontroller.printMessage("Try again!");
             memberChoice(2);
           }
         }
         break;
       case 3:
-        // change member
+        mcontroller.printMemberIDs();
+        mcontroller.printMessage("Select member: ");
+        temp = input.getInputString();
+        mcontroller.printMessage("What do you want to change? (name, personalnumber)");
         break;
       case 4:
+        mcontroller.printMemberIDs();
+        mcontroller.printMessage("Select member: ");
+        temp = input.getInputString();
+      case 6:
         System.exit(0);
     }
   }
