@@ -3,6 +3,9 @@ package view;
 import java.util.ArrayList;
 import model.Member;
 
+/**
+ * Used for all the user inputs and user interface.
+ */
 public class MemberView implements View {
   private ArrayList<Member> list;
   private InputHandler input;
@@ -12,6 +15,9 @@ public class MemberView implements View {
     this.list = list;
   }
 
+  /**
+   * Prints out the main menu for members.
+   */
   public void printView() {
     System.out.println("Main Menu - Member");
     System.out.println("--------------------");
@@ -27,16 +33,24 @@ public class MemberView implements View {
     System.out.println(message);
   }
 
+  /**
+   * Goes through the entire list and prints out the name + id.
+   */
   public void printMemberList() {
     for (int i = 0; i < list.size(); i++) {
-      System.out.println(i + " " + list.get(i).getName() + " " + list.get(i).getMemberID());
+      System.out.println(i + " " + list.get(i).getName() + " " + list.get(i).getMemberId());
     }
   }
 
+  /**
+   * Prints the list of members and allows the user to pick one.
+
+   * @return returns the member that is at the chosen value.
+   */
   public Member memberChoice() {
     if (list.size() > 0) {
       for (int i = 0; i < list.size(); i++) {
-        System.out.println(i + " " + list.get(i).getName() + " " + list.get(i).getMemberID());
+        System.out.println(i + " " + list.get(i).getName() + " " + list.get(i).getMemberId());
       }
       System.out.println("Choose member: ");
       String temp = input.getInputString();
@@ -45,6 +59,11 @@ public class MemberView implements View {
     return null;
   }
 
+  /**
+   * Deciding which part that user want to change.
+
+   * @return the integer choice of the user.
+   */
   public int changeChoice() {
     System.out.println("What do you want to change? (Name, Personalnumber)");
     String temp = input.getInputString();
@@ -61,10 +80,15 @@ public class MemberView implements View {
     return input.getInputString();
   }
 
+  /**
+   * Prints out the data from the model and then waits for input.
+
+   * @param model model is the member that is currently looked at.
+   */
   public void showOverview(Member model) {
     System.out.println("Name: " + model.getName());
     System.out.println("Personalnumber: " + model.getPersonalNumber());
-    System.out.println("MemberID: " + model.getMemberID());
+    System.out.println("MemberID: " + model.getMemberId());
     System.out.println("Press any key to continue.");
     input.getInputString();
   }

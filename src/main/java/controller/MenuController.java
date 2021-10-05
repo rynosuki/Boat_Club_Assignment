@@ -2,11 +2,21 @@ package controller;
 
 import view.MainView;
 
+/**
+ * Controller for all things related to the menu.
+ */
 public class MenuController {
-  MainView mView = new MainView();
+  MainView mainView = new MainView();
   BoatController bcontroller;
   MemberController mcontroller;
 
+  /**
+   * Creates the menu controller using the existing membercontroller + boatcontroller.
+
+   * @param mcontroller Membercontroller used for displaying menus and working with the members.
+   * 
+   * @param bcontroller Boatcontroller used for displaying menus and working with the boats.
+   */
   public MenuController(MemberController mcontroller, BoatController bcontroller) {
     this.bcontroller = bcontroller;
     this.mcontroller = mcontroller;
@@ -14,17 +24,21 @@ public class MenuController {
   }
   
   private void printMain() {
-    mView.printView();
-    int choice = mView.getChoice();
+    mainView.printView();
+    int choice = mainView.getChoice();
     switch (choice) {
       case 1:
         memberChoice();
+        break;
       case 2:
         bcontroller.printMenu();
         //boatChoice(mView.getChoice());
         break;
       case 3:
         System.exit(0);
+        break;
+      default: 
+        break;
     }
   }
 
@@ -54,7 +68,7 @@ public class MenuController {
 
   private void memberChoice() {
     mcontroller.printMenu();
-    int choice = mView.getChoice();
+    int choice = mainView.getChoice();
     
     switch (choice) {
       case 1:
@@ -68,10 +82,15 @@ public class MenuController {
         break;
       case 4:
         mcontroller.overviewMember();
+        break;
       case 5:
         printMain();
+        break;
       case 6:
         System.exit(0);
+        break;
+      default:
+        break;
     }
     memberChoice();
   }

@@ -1,5 +1,8 @@
-package controller;
+package model;
 
-public class SaveHandler {
+/**
+ * Handles saving all data.
+ */
+public class SaveHandler implements FileHandler {
   
 }

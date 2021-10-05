@@ -2,14 +2,17 @@ package controller;
 
 import view.BoatView;
 
+/**
+ * Handles all things related to the boat object.
+ */
 public class BoatController {
-  BoatView bView = new BoatView();
+  BoatView boatView = new BoatView();
   
   public void printMenu() {
-    bView.printView();
+    boatView.printView();
   }
 
   public void printMessage(String message) {
-    bView.printMessage(message);
+    boatView.printMessage(message);
   }
 }

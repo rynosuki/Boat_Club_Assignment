@@ -1,5 +1,8 @@
 package view;
 
+/**
+ * View for handling user inputs and user interface for Main Menu.
+ */
 public class MainView implements View {
   InputHandler input = new InputHandler();
 

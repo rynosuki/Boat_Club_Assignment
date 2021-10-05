@@ -2,11 +2,11 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import controller.MemberController;
 import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
 
-import controller.MemberController;
+
 
 
 public class SimpleTest {
@@ -15,7 +15,8 @@ public class SimpleTest {
 
   @Test
   public void creationofMember() {
-    Member sut = new Member("Robin", "199503231897", new MemberID().generateMemberID("Robin", members));
+    Member sut = new Member("Robin", "199503231897", 
+        new MemberId().generateMemberId("Robin", members));
     members.add(sut);
 
     assertTrue(members.size() > 0, "Member is not added to list.");

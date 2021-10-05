@@ -13,8 +13,8 @@ public class App {
    */
   public static void main(String[] args) {
     // adapt to start the application in your way
-    LoadHandler lHandler = new LoadHandler();
-    MemberController mcontroller = new MemberController(lHandler.getMemberList());
+    LoadHandler loadHandler = new LoadHandler();
+    MemberController mcontroller = new MemberController(loadHandler.getMemberList());
     BoatController bcontroller = new BoatController();
 
     new MenuController(mcontroller, bcontroller);

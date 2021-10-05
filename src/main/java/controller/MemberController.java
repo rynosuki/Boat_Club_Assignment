@@ -1,13 +1,14 @@
 package controller;
 
 import java.util.ArrayList;
-
 import model.Boat;
 import model.Member;
-import model.MemberID;
+import model.MemberId;
 import view.MemberView;
 
-
+/**
+ * Handles all the things related to the member object.
+ */
 public class MemberController {
   private Member model;
   public ArrayList<Member> members;
@@ -16,14 +17,6 @@ public class MemberController {
   public MemberController(ArrayList<Member> members) {
     this.members = members;
     view = new MemberView(members);
-  }
-
-  public void getMember(String name) {
-    for (int i = 0; i < members.size(); i++) {
-      if (members.get(i).getName().equals(name)) {
-        this.model = members.get(i);
-      }
-    }
   }
 
   public void setMemberName(String name) {
@@ -42,13 +35,18 @@ public class MemberController {
     return model.getPersonalNumber();
   }
 
+  /**
+   * Used to create members and add them to the memberlist.
+   */
   public void addMember() {
     String name = view.getInputValue("Name of person: ");
     String personalNumber = view.getInputValue("Personalnumber: ");
-    Member tempModel = new Member(name, personalNumber, new MemberID().generateMemberID(name, members));
-    for (int i = 0; i < members.size(); i++){
-      if (members.get(i).getPersonalNumber() == tempModel.getPersonalNumber()) {
-        String temp = view.getInputValue("Your personal number already exists in our database. Try again Y/N?");
+    Member tempModel = new Member(name, personalNumber, 
+        new MemberId().generateMemberId(name, members));
+    for (int i = 0; i < members.size(); i++) {
+      if (members.get(i).getPersonalNumber().equals(tempModel.getPersonalNumber())) {
+        String temp = view.getInputValue("Your personal number already exists in our database. "
+            + "Try again Y/N?");
         if (temp.equalsIgnoreCase("Y")) {
           personalNumber = view.getInputValue("Personalnumber: ");
           tempModel.setPersonalNumber(personalNumber);
@@ -62,18 +60,8 @@ public class MemberController {
     this.view.printView();
   }
 
-  public String getMemberID() {
-    return model.getMemberID();
-  }
-
-  public boolean deleteMember(String personalNumber) {
-    for (int j = 0; j < members.size(); j++) {
-      if (members.get(j).getPersonalNumber().equals(personalNumber)) {
-        members.remove(j);
-        return true;
-      }
-    }
-    return false;
+  public String getMemberId() {
+    return model.getMemberId();
   }
 
   public void addBoatToMember(Boat boat) {
@@ -84,6 +72,9 @@ public class MemberController {
     view.printMessage(message);
   }
 
+  /**
+   * Used to change member info, user provides which member needs to be changed.
+   */
   public void changeMember() {
     this.model = view.memberChoice();
     int choice = view.changeChoice();
@@ -96,6 +87,8 @@ public class MemberController {
         setMemberPersonalNumber(view.getInputValue("Enter new personalnumber for member:"));
         break;
       case 3:
+        break;
+      default:
         break;
     }
   }
