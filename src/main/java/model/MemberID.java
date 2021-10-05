@@ -9,8 +9,8 @@ public class MemberID {
     boolean check = true;
     do {
       String name1 = name.substring(0,2);
-      int number = rand.nextInt(9);
-      int number1 = rand.nextInt(9);
+      int number = rand.nextInt(10);
+      int number1 = rand.nextInt(10);
       int firstL = rand.nextInt(26);
       int secondL = rand.nextInt(26);
       name1 = name1.concat(String.valueOf(number)).concat(String.valueOf(number1)).concat(Character.toString((char)firstL+65)).concat(Character.toString((char)secondL+65));

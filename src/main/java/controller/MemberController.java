@@ -10,13 +10,12 @@ import view.MemberView;
 
 public class MemberController {
   private Member model;
+  public ArrayList<Member> members;
   private MemberView view;
-  public ArrayList<Member> members = new ArrayList<>();
-  private InputHandler input;
 
-  public MemberController(MemberView view, InputHandler input) {
-    this.view = view;
-    this.input = input;
+  public MemberController(ArrayList<Member> members) {
+    this.members = members;
+    view = new MemberView(members);
   }
 
   public void getMember(String name) {
@@ -43,15 +42,20 @@ public class MemberController {
     return model.getPersonalNumber();
   }
 
-  public boolean addMember(String name, String personalNumber) {
+  public void addMember() {
+    String name = view.getInputValue("Name of person: ");
+    String personalNumber = view.getInputValue("Personalnumber: ");
     Member tempModel = new Member(name, personalNumber, new MemberID().generateMemberID(name, members));
     for (int i = 0; i < members.size(); i++){
-      if (members.get(i).getPersonalNumber() == personalNumber) {
-        return false;
+      if (members.get(i).getPersonalNumber() == tempModel.getPersonalNumber()) {
+        String temp = view.getInputValue("Your personal number already exists in our database. Try again Y/N?");
+        if (temp.equalsIgnoreCase("Y")) {
+          personalNumber = view.getInputValue("Personalnumber: ");
+          tempModel.setPersonalNumber(personalNumber);
+        }
       }
     }
     this.members.add(tempModel);
-    return true;
   }
 
   public void printMenu() {
@@ -76,30 +80,31 @@ public class MemberController {
     model.addBoat(boat);
   }
 
-  public void createBoatAndAdd(int boatID, String type, int length) {
-    model.addBoat(new Boat(boatID, type, length));
-  }
-
-  public Boat getBoat() {
-    if (model.getBoatList().size() == 1) {
-      return model.getBoatList().get(0);
-    } else {
-      view.printMessage("Which boatID?");
-      int i = Integer.parseInt(input.getInputString());
-      for (int d = 0; d < model.getBoatList().size(); d++) {
-        if (model.getBoatList().get(d).getBoatID() == i) {
-          return model.getBoatList().get(d);
-        }
-      }
-    }
-    return null;
-  }
-
   public void printMessage(String message) {
     view.printMessage(message);
   }
 
-  public void printMemberIDs() {
-    view.printMemberList(this.members);
+  public void changeMember() {
+    this.model = view.memberChoice();
+    int choice = view.changeChoice();
+    switch (choice) {
+      case 1:
+        setMemberName(view.getInputValue("Enter new name for member:"));
+        view.printMemberList();
+        break;
+      case 2:
+        setMemberPersonalNumber(view.getInputValue("Enter new personalnumber for member:"));
+        break;
+      case 3:
+        break;
+    }
+  }
+
+  public void overviewMember() {
+    view.showOverview(view.memberChoice());
+  }
+
+  public void deleteMember() {
+    members.remove(view.memberChoice());
   }
 }
