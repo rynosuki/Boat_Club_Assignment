@@ -8,8 +8,4 @@ public class InputHandler {
   public String getInputString() {
     return sc.nextLine();
   }
-
-  public int getInputInt() {
-    return sc.nextInt();
-  }
 }

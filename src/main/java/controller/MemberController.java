@@ -10,7 +10,7 @@ import view.MemberView;
 public class MemberController {
   private Member model;
   private MemberView view;
-  private ArrayList<Member> members = new ArrayList<>();
+  public ArrayList<Member> members = new ArrayList<>();
   private InputHandler input;
 
   public MemberController(MemberView view, InputHandler input) {
@@ -42,8 +42,15 @@ public class MemberController {
     return model.getPersonalNumber();
   }
 
-  public void createMember(String name, int personalNumber, int memberID) {
-    this.members.add(new Member(name, personalNumber, memberID));
+  public boolean addMember(String name, long personalNumber, String memberID) {
+    Member tempModel = new Member(name, personalNumber, memberID);
+    for (int i = 0; i < members.size(); i++){
+      if (members.get(i).getPersonalNumber() == personalNumber) {
+        return false;
+      }
+    }
+    this.members.add(tempModel);
+    return true;
   }
 
   public void printMenu() {
@@ -58,6 +65,20 @@ public class MemberController {
     // this.view.showVerboseList;
   }
 
+  public String getMemberID() {
+    return model.getMemberID();
+  }
+
+  public boolean deleteMember(Long personalNumber) {
+    for (int j = 0; j < members.size(); j++) {
+      if (members.get(j).getPersonalNumber() == personalNumber) {
+        members.remove(j);
+        return true;
+      }
+    }
+    return false;
+  }
+
   public void addBoatToMember(Boat boat) {
     model.addBoat(boat);
   }
@@ -70,8 +91,8 @@ public class MemberController {
     if (model.getBoatList().size() == 1) {
       return model.getBoatList().get(0);
     } else {
-      view.boatID();
-      int i = input.getInputInt();
+      view.printMessage("Which boatID?");
+      int i = Integer.parseInt(input.getInputString());
       for (int d = 0; d < model.getBoatList().size(); d++) {
         if (model.getBoatList().get(d).getBoatID() == i) {
           return model.getBoatList().get(d);
@@ -79,5 +100,15 @@ public class MemberController {
       }
     }
     return null;
+  }
+
+  public void printMessage(String message) {
+    view.printMessage(message);
+  }
+
+  public void printMembers() {
+    for (int i = 0; i < members.size(); i++) {
+      view.printMessage(members.get(i).getPersonalNumber());
+    }
   }
 }

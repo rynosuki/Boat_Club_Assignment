@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Member {
   private String name;
   private long personalNumber;
-  private int memberID;
+  private String memberID;
   private ArrayList<Boat> boats = new ArrayList<>();
 
   /**
@@ -14,7 +14,7 @@ public class Member {
    * @param personalNumber Personal number of member.
    * @param memberID Generated ID for member.
    */
-  public Member(String name, long personalNumber, int memberID) {
+  public Member(String name, long personalNumber, String memberID) {
     this.name = name;
     this.personalNumber = personalNumber;
     this.memberID = memberID;
@@ -28,7 +28,7 @@ public class Member {
     return this.personalNumber;
   }
 
-  public int getMemberID() {
+  public String getMemberID() {
     return this.memberID;
   }
 

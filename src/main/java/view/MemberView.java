@@ -8,7 +8,7 @@ public class MemberView implements View {
 
   public void printView() {
     System.out.println("Main Menu - Member");
-    System.out.println("------------------");
+    System.out.println("--------------------");
     System.out.println("1. Add member");
     System.out.println("2. Delete member");
     System.out.println("3. Change member");
@@ -21,7 +21,11 @@ public class MemberView implements View {
     this.list = list;
   }
 
-  public void boatID() {
-    System.out.print("Enter the boat ID: ");
+  public void printMessage(String message) {
+    System.out.println(message);
+  }
+  
+  public void printMessage(long message) {
+    System.out.println(message);
   }
 }
