@@ -1,5 +1,7 @@
 package controller;
 
+import model.LoadHandler;
+
 /**
  * Responsible for staring the application.
  */
@@ -11,10 +13,10 @@ public class App {
    */
   public static void main(String[] args) {
     // adapt to start the application in your way
-    model.Simple m = new model.Simple();
-    Simple c = new Simple();
-    view.Simple v = new view.Simple();
+    LoadHandler loadHandler = new LoadHandler();
+    MemberController mcontroller = new MemberController(loadHandler.getMemberList());
+    BoatController bcontroller = new BoatController();
 
-    c.doSomethingSimple(m, v);
+    new MenuController(mcontroller, bcontroller);
   }
 }

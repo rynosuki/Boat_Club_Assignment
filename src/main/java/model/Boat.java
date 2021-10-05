@@ -1,24 +1,30 @@
 package model;
 
+/**
+ * Model of the boat class.
+ */
 public class Boat {
-  private int boatID;
+  private int boatId;
   private String type;
   private int length;
   
   /**
    * Creates a boat object from input variables.
-   * @param boatID Unique id for boat.
+
+   * @param boatId Unique id for boat.
+
    * @param type Type of boat(sailing boat, motorboat e.g).
+
    * @param length Length of boat.
    */
-  public Boat(int boatID, String type, int length) {
-    this.boatID = boatID;
+  public Boat(int boatId, String type, int length) {
+    this.boatId = boatId;
     this.type = type;
     this.length = length;
   }
 
-  public int getBoatID() {
-    return this.boatID;
+  public int getBoatId() {
+    return this.boatId;
   }
 
   public String getType() {
@@ -29,8 +35,8 @@ public class Boat {
     return this.length;
   }
   
-  public void setBoatID(int boatID) {
-    this.boatID = boatID;
+  public void setBoatId(int boatId) {
+    this.boatId = boatId;
   }
 
   public void setType(String type) {
