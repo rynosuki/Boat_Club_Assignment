@@ -2,34 +2,41 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * Model of the member. With getters and setters.
+ */
 public class Member {
   private String name;
-  private int personalNumber;
-  private int memberID;
+  private String personalNumber;
+  private String memberId;
   private ArrayList<Boat> boats = new ArrayList<>();
 
   /**
    * Creates a member object from input variables.
+
    * @param name Name of member.
+   * 
    * @param personalNumber Personal number of member.
-   * @param memberID Generated ID for member.
+   * 
+   * @param memberId Generated ID for member.
+   * 
    */
-  public Member(String name, int personalNumber, int memberID) {
+  public Member(String name, String personalNumber, String memberId) {
     this.name = name;
     this.personalNumber = personalNumber;
-    this.memberID = memberID;
+    this.memberId = memberId;
   }
 
   public String getName() {
     return this.name;
   }
 
-  public int getPersonalNumber() {
+  public String getPersonalNumber() {
     return this.personalNumber;
   }
 
-  public int getMemberID() {
-    return this.memberID;
+  public String getMemberId() {
+    return this.memberId;
   }
 
   public ArrayList<Boat> getBoatList() {
@@ -40,7 +47,7 @@ public class Member {
     this.name = name;
   }
   
-  public void setPersonalNumber(int personalNumber) {
+  public void setPersonalNumber(String personalNumber) {
     this.personalNumber = personalNumber;
   }
 
