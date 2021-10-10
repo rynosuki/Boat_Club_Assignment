@@ -4,7 +4,7 @@ package model;
  * Model of the boat class.
  */
 public class Boat {
-  private String boatId;
+  private int boatId;
   private String type;
   private int length;
   
@@ -17,13 +17,13 @@ public class Boat {
 
    * @param length Length of boat.
    */
-  public Boat(String boatId, String type, int length) {
+  public Boat(int boatId, String type, int length) {
     this.boatId = boatId;
     this.type = type;
     this.length = length;
   }
 
-  public String getBoatId() {
+  public int getBoatId() {
     return this.boatId;
   }
 
@@ -35,8 +35,8 @@ public class Boat {
     return this.length;
   }
   
-  public void setBoatId(String name) {
-    this.boatId = name;
+  public void setBoatId(int boatId) {
+    this.boatId = boatId;
   }
 
   public void setType(String type) {
