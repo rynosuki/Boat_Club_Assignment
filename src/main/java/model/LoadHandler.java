@@ -7,10 +7,10 @@ import java.util.ArrayList;
  */
 public class LoadHandler implements FileHandler {
   ArrayList<Member> memberList = new ArrayList<>();
-  //ArrayList<Boat> bList = new ArrayList<>();
+  ArrayList<Boat> boatList = new ArrayList<>();
   
   /**
-   * Loads all the members.
+   * Loads all the members abd boats.
    */
   public LoadHandler() {
     Member tempMember = new Member("Robin", "199503231897", 
@@ -31,9 +31,35 @@ public class LoadHandler implements FileHandler {
     tempMember = new Member("Maja", "195212295321", 
         new MemberId().generateMemberId("Maja", memberList));
     memberList.add(tempMember);
+
+    /* Boats */
+    Boat tempBoat = new Boat("S790", "sailboat", "6,5");
+    boatList.add(tempBoat);
+
+    tempBoat = new Boat("S540", "sailboat", "10");
+    boatList.add(tempBoat);
+
+    tempBoat = new Boat("MS100", "motorsailor", "17,2");
+    boatList.add(tempBoat);
+
+    tempBoat = new Boat("MS069", "motorsailor", "20");
+    boatList.add(tempBoat);
+
+    tempBoat = new Boat("K023", "kayak", "5,5");
+    boatList.add(tempBoat);
+
+    tempBoat = new Boat("K378", "kayak", "4,8");
+    boatList.add(tempBoat);
+
+    tempBoat = new Boat("C902", "canoe", "4,9");
+    boatList.add(tempBoat);
   }
 
   public ArrayList<Member> getMemberList() {
     return memberList;
+  }
+
+  public ArrayList<Boat> getboatList() {
+    return boatList;
   }
 }
