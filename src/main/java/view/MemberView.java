@@ -27,9 +27,10 @@ public class MemberView implements View {
     System.out.println("1. Add member");
     System.out.println("2. Delete member");
     System.out.println("3. Change member");
-    System.out.println("4. Show verbose list");
-    System.out.println("5. Show compact list");
-    System.out.println("6. Return to menu");
+    System.out.println("4. View member details");
+    System.out.println("5. Show verbose list");
+    System.out.println("6. Show compact list");
+    System.out.println("7. Return to menu");
   }
 
   public void printMessage(String message) {
@@ -97,13 +98,15 @@ public class MemberView implements View {
   }
 
   /**
-   * Verbose list: name, personal number, member id and boats with boat information.
+   * Verbose list: name, personal number, member id and boats with boat
+   * information.
+   * 
    * @param list Member list.
    */
   public void printVerboseList(ArrayList<Member> list) {
     BoatView view = new BoatView();
 
-    for (Member member : list) {   
+    for (Member member : list) {
       System.out.println();
       System.out.println("- MEMBER (Verbose list) ---------");
       System.out.println("| Name: " + member.getName() + " (" + member.getPersonalNumber() + ")");
@@ -119,11 +122,12 @@ public class MemberView implements View {
 
   /**
    * Compact list: name, member id and number of boats.
+   * 
    * @param list Member list.
    */
   public void printCompactList(ArrayList<Member> list) {
     for (Member member : list) {
-      
+
       System.out.println();
       System.out.println("- MEMBER (Compact list) -----");
       System.out.println("| Name: " + member.getName());

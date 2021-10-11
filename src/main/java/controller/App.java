@@ -85,12 +85,15 @@ public class App {
         mcontroller.changeMember();
         break;
       case 4:
-        mcontroller.verboseList();
+        mcontroller.overviewMember();
         break;
       case 5:
-        mcontroller.compactList();
+        mcontroller.verboseList();
         break;
       case 6:
+        mcontroller.compactList();
+        break;
+      case 7:
         printMain();
         break;
       default:
