@@ -2,6 +2,11 @@
 
 There are some limitations as to having enough letters in a name or using only numbers in creating a boat length.
 
+# Group members
+Robin Svensson (rs223dj)  
+Mattias Stålgren (ms225kw)  
+Emma Lövgren (el222wg)  
+
 
 # Usage
 The program is mainly used by moving through the different menus, currently being two. One for members and one for boats.  
