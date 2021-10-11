@@ -17,13 +17,6 @@ public class App {
    * @param args command line arguments.
    */
   public static void main(String[] args) {
-    // adapt to start the application in your way
-    // LoadHandler loadHandler = new LoadHandler();
-    // this.mcontroller = new MemberController(loadHandler.getMemberList());
-    // this.bcontroller = new BoatController();
-    // this.mainView = new MainView();
-
-    // printMain();
     App g = new App();
     g.start();
   }
@@ -56,23 +49,25 @@ public class App {
   }
 
   private void boatChoice() {
+    mcontroller.printMessage("Choose a member: ");
+    mcontroller.setCurrentMember();
     bcontroller.printMenu();
     int choice = mainView.getChoice();
 
     switch (choice) {
       case 1:
-        bcontroller.addBoat();
+        mcontroller.addBoatToMember(bcontroller.addBoat());
         break;
       case 2:
-        mcontroller.setCurrentMember();
         mcontroller.deleteBoat(bcontroller.chooseBoat(mcontroller.getMemberBoats()));
         break;
       case 3:
+        bcontroller.changeBoat(mcontroller.getMemberBoats());
         break;
       case 4:
         printMain();
     }
-    boatChoice();
+    printMain();
   }
 
   private void memberChoice() {

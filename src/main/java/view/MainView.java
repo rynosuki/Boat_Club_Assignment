@@ -19,6 +19,6 @@ public class MainView implements View {
   }
 
   public int getChoice() {
-    return Integer.parseInt(input.getInputString()); 
+    return Integer.parseInt(input.getInputString());
   }
 }

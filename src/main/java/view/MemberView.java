@@ -26,7 +26,7 @@ public class MemberView implements View {
     System.out.println("3. Change member");
     System.out.println("4. Show verbose list");
     System.out.println("5. Show compact list");
-    System.out.println("6. Quit");
+    System.out.println("6. Return to menu");
   }
 
   public void printMessage(String message) {
@@ -44,7 +44,7 @@ public class MemberView implements View {
 
   /**
    * Prints the list of members and allows the user to pick one.
-
+   * 
    * @return returns the member that is at the chosen value.
    */
   public Member memberChoice() {
@@ -61,7 +61,7 @@ public class MemberView implements View {
 
   /**
    * Deciding which part that user want to change.
-
+   * 
    * @return the integer choice of the user.
    */
   public int changeChoice() {
@@ -82,7 +82,7 @@ public class MemberView implements View {
 
   /**
    * Prints out the data from the model and then waits for input.
-
+   * 
    * @param model model is the member that is currently looked at.
    */
   public void showOverview(Member model) {
