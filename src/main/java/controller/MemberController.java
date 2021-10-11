@@ -35,6 +35,10 @@ public class MemberController {
     return model.getPersonalNumber();
   }
 
+  public ArrayList<Boat> getMemberBoats(Member model) {
+    return model.getBoatList();
+  }
+
   /**
    * Used to create members and add them to the memberlist.
    */
