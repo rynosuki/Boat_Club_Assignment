@@ -90,8 +90,11 @@ public class BoatView implements View {
     input.getInputString();
   }
 
-  
-  public void boatInformation(ArrayList<Boat>boatList) {
+  /**
+   * Prints boat information.
+   * @param boatList A list conatining boats.
+   */
+  public void boatInformation(ArrayList<Boat> boatList) {
     System.out.println("- Boats ---");
     System.out.println("|");
     for (Boat boat : boatList) {

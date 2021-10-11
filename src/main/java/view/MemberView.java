@@ -2,9 +2,7 @@ package view;
 
 import java.util.ArrayList;
 
-import model.Boat;
 import model.Member;
-import view.BoatView;
 
 /**
  * Used for all the user inputs and user interface.

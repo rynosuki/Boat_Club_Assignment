@@ -50,10 +50,12 @@ public class MemberController {
     try {
       String name = view.getInputValue("Name of person: (2+ characters)");
       String personalNumber = view.getInputValue("Personalnumber: ");
-      Member tempModel = new Member(name, personalNumber, new MemberId().generateMemberId(name, members));
+      Member tempModel = new Member(name, personalNumber, 
+          new MemberId().generateMemberId(name, members));
       for (int i = 0; i < members.size(); i++) {
         if (members.get(i).getPersonalNumber().equals(tempModel.getPersonalNumber())) {
-          String temp = view.getInputValue("Your personal number already exists in our database. " + "Try again Y/N?");
+          String temp = view.getInputValue("Your personal number already exists in our database. " 
+              + "Try again Y/N?");
           if (temp.equalsIgnoreCase("Y")) {
             personalNumber = view.getInputValue("Personalnumber: ");
             tempModel.setPersonalNumber(personalNumber);
@@ -117,13 +119,8 @@ public class MemberController {
   }
 
   public void verboseList() {
-    //view.printVerboseList(model.getName(), model.getMemberId());
     view.printVerboseList(this.members);
   }
-
-  // public void verboseList() {
-  //   view.printVerboseList(model);
-  // }
 
   public void compactList() {
     view.printCompactList(this.members);

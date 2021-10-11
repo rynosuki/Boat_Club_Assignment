@@ -66,6 +66,9 @@ public class App {
         break;
       case 4:
         printMain();
+        break;
+      default:
+        break;
     }
     printMain();
   }
