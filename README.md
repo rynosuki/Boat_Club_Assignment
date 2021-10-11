@@ -11,8 +11,9 @@ These are easily transversable and usable. Everything should be straight forward
 1. Add member
 2. Delete member
 3. Change member
-4. Show verbose list
-5. Show compact list
+4. View member details
+5. Show verbose list
+6. Show compact list
 
 
 **Selections for Boat Menu:**  
