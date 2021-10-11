@@ -6,14 +6,14 @@ import model.Boat;
 import view.BoatView;
 
 /**
- * Handles all the things related to the member object.
+ * Handles all the things related to the boat object.
  */
 public class BoatController {
   private Boat model;
   public ArrayList<Boat> boats;
   private BoatView view;
 
-  public BoatController(ArrayList<Boat> boats) {
+  public BoatController() {
     this.boats = boats;
     view = new BoatView(boats);
   }
@@ -35,9 +35,9 @@ public class BoatController {
   }
 
   /**
-   * Used to create boatss and add them to the members boatlist.
+   * Used to create boatss and add them to the boats boatlist.
    */
-  public void addMember() {
+  public void addBoat() {
     String name = view.getInputValue("Name of boat: ");
     String length = view.getInputValue("Length: ");
     String type = view.getInputValue("Type of boat: ");
@@ -88,11 +88,11 @@ public class BoatController {
     }
   }
 
-  public void overviewMember() {
+  public void overviewBoat() {
     view.showOverview(view.boatChoice());
   }
 
-  public void deleteMember() {
+  public void deleteBoat() {
     boats.remove(view.boatChoice());
   }
 }
