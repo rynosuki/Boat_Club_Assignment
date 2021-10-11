@@ -7,8 +7,13 @@ import java.util.Scanner;
  */
 public class InputHandler {
   private Scanner sc = new Scanner(System.in, "UTF-8");
-  
+
   public String getInputString() {
-    return sc.nextLine();
+    try {
+      return sc.nextLine();
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+    return null;
   }
 }

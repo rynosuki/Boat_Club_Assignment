@@ -10,12 +10,10 @@ import view.BoatView;
  */
 public class BoatController {
   private Boat model;
-  public ArrayList<Boat> boats;
   private BoatView view;
 
   public BoatController() {
-    this.boats = boats;
-    view = new BoatView(boats);
+    view = new BoatView();
   }
 
   public void setBoatId(String name) {
@@ -37,22 +35,12 @@ public class BoatController {
   /**
    * Used to create boatss and add them to the boats boatlist.
    */
-  public void addBoat() {
+  public Boat addBoat() {
     String name = view.getInputValue("Name of boat: ");
     String length = view.getInputValue("Length: ");
     String type = view.getInputValue("Type of boat: ");
-    Boat tempModel = new Boat(name, type, Integer.parseInt(length));
-    for (int i = 0; i < boats.size(); i++) {
-      if (boats.get(i).getBoatId().equals(tempModel.getBoatId())) {
-        String temp = view.getInputValue("You already have a boat with that name. "
-            + "Try again Y/N?");
-        if (temp.equalsIgnoreCase("Y")) {
-          name = view.getInputValue("Name: ");
-          tempModel.setBoatId(name);
-        }
-      }
-    }
-    this.boats.add(tempModel);
+    Boat tempModel = new Boat(name, type, Double.parseDouble(length));
+    return tempModel;
   }
 
   public void printMenu() {
@@ -70,13 +58,12 @@ public class BoatController {
   /**
    * Used to change boat info, user provides which boat needs to be changed.
    */
-  public void changeBoat() {
-    this.model = view.boatChoice();
+  public void changeBoat(ArrayList<Boat> list) {
+    this.model = view.boatChoice(list);
     int choice = view.changeChoice();
     switch (choice) {
       case 1:
         setBoatId(view.getInputValue("Enter new name for boat:"));
-        view.printBoatList();
         break;
       case 2:
         setBoatType(view.getInputValue("Enter new type for boat:"));
@@ -88,13 +75,11 @@ public class BoatController {
     }
   }
 
-  public void overviewBoat() {
-    view.showOverview(view.boatChoice());
+  public void overviewBoat(ArrayList<Boat> list) {
+    view.showOverview(view.boatChoice(list));
   }
 
-  public void deleteBoat() {
-    boats.remove(view.boatChoice());
+  public Boat chooseBoat(ArrayList<Boat> list) {
+    return view.boatChoice(list);
   }
 }
-
-

@@ -35,8 +35,12 @@ public class MemberController {
     return model.getPersonalNumber();
   }
 
-  public ArrayList<Boat> getMemberBoats(Member model) {
+  public ArrayList<Boat> getMemberBoats() {
     return model.getBoatList();
+  }
+
+  public void setCurrentMember() {
+    this.model = view.memberChoice();
   }
 
   /**
@@ -45,12 +49,10 @@ public class MemberController {
   public void addMember() {
     String name = view.getInputValue("Name of person: ");
     String personalNumber = view.getInputValue("Personalnumber: ");
-    Member tempModel = new Member(name, personalNumber, 
-        new MemberId().generateMemberId(name, members));
+    Member tempModel = new Member(name, personalNumber, new MemberId().generateMemberId(name, members));
     for (int i = 0; i < members.size(); i++) {
       if (members.get(i).getPersonalNumber().equals(tempModel.getPersonalNumber())) {
-        String temp = view.getInputValue("Your personal number already exists in our database. "
-            + "Try again Y/N?");
+        String temp = view.getInputValue("Your personal number already exists in our database. " + "Try again Y/N?");
         if (temp.equalsIgnoreCase("Y")) {
           personalNumber = view.getInputValue("Personalnumber: ");
           tempModel.setPersonalNumber(personalNumber);
@@ -103,5 +105,9 @@ public class MemberController {
 
   public void deleteMember() {
     members.remove(view.memberChoice());
+  }
+
+  public void deleteBoat(Boat boat) {
+    this.model.getBoatList().remove(boat);
   }
 }

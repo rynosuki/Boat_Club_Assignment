@@ -8,13 +8,12 @@ import model.Boat;
  * Handles the user inputs and user interface for the boat.
  */
 public class BoatView implements View {
-  private ArrayList<Boat> list;
   private InputHandler input;
 
-  public BoatView(ArrayList<Boat> list) {
+  public BoatView() {
     this.input = new InputHandler();
-    this.list = list;
   }
+
   /**
    * Print the menu.
    */
@@ -33,7 +32,7 @@ public class BoatView implements View {
   /**
    * Goes through the entire list and prints out the name.
    */
-  public void printBoatList() {
+  public void printBoatList(ArrayList<Boat> list) {
     for (int i = 0; i < list.size(); i++) {
       System.out.println(i + " " + list.get(i).getBoatId());
     }
@@ -41,10 +40,10 @@ public class BoatView implements View {
 
   /**
    * Prints the list of boats and allows the user to pick one.
-
+   * 
    * @return returns the boat that is at the chosen value.
    */
-  public Boat boatChoice() {
+  public Boat boatChoice(ArrayList<Boat> list) {
     if (list.size() > 0) {
       for (int i = 0; i < list.size(); i++) {
         System.out.println(i + " " + list.get(i).getBoatId());
@@ -58,7 +57,7 @@ public class BoatView implements View {
 
   /**
    * Deciding which part that user want to change.
-
+   * 
    * @return the integer choice of the user.
    */
   public int changeChoice() {
@@ -79,7 +78,7 @@ public class BoatView implements View {
 
   /**
    * Prints out the data from the model and then waits for input.
-
+   * 
    * @param model model is the member that is currently looked at.
    */
   public void showOverview(Boat model) {
