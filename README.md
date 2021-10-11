@@ -1,13 +1,8 @@
-# A2
+# Boatclub application
 
-Project for Assignment 2
+The program is mainly used by moving through the different menus, currently being two. One for members and one for boats.
 
-A project template based on gradle and a gitlab pipeline. You should always build and run the application using gradle regularely.
+These are easily transversable and usable. Everything should be straight forward to use by just following the wording in the application. 
 
-`./gradlew build`
+There are some limitations as to having enough letters in a name or using only numbers in creating a boat length.
 
-`./gradlew run -q --console=plain`
-
-Adhere to the git versioning instructions according to the assignment.
-
-Note that this assignment will be automatically checked for plagiarism of source code.
