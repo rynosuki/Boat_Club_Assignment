@@ -115,4 +115,18 @@ public class MemberController {
   public void deleteBoat(Boat boat) {
     this.model.getBoatList().remove(boat);
   }
+
+  public void verboseList() {
+    //view.printVerboseList(model.getName(), model.getMemberId());
+    view.printVerboseList(this.members);
+  }
+
+  // public void verboseList() {
+  //   view.printVerboseList(model);
+  // }
+
+  public void compactList() {
+    view.printCompactList(this.members);
+  }
+  
 }
