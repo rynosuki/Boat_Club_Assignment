@@ -18,6 +18,10 @@ public class MainView implements View {
     System.out.println("3. Quit");
   }
 
+  public void printMessage(String message) {
+
+  }
+
   public int getChoice() {
     return Integer.parseInt(input.getInputString());
   }
