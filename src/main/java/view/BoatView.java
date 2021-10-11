@@ -89,4 +89,16 @@ public class BoatView implements View {
     System.out.println("Press any key to continue.");
     input.getInputString();
   }
+
+  
+  public void boatInformation(ArrayList<Boat>boatList) {
+    System.out.println("- Boats ---");
+    System.out.println("|");
+    for (Boat boat : boatList) {
+      System.out.println("| Boat ID: " + boat.getBoatId());
+      System.out.println("| Type: " + boat.getType());
+      System.out.println("| Length: " + boat.getLength());
+      System.out.println("|");
+    }
+  }
 }

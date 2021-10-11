@@ -1,7 +1,10 @@
 package view;
 
 import java.util.ArrayList;
+
+import model.Boat;
 import model.Member;
+import view.BoatView;
 
 /**
  * Used for all the user inputs and user interface.
@@ -92,4 +95,44 @@ public class MemberView implements View {
     System.out.println("Press any key to continue.");
     input.getInputString();
   }
+
+  /**
+   * Verbose list: name, personal number, member id and boats with boat information.
+   * @param list Member list.
+   */
+  public void printVerboseList(ArrayList<Member> list) {
+    BoatView view = new BoatView();
+
+    for (Member member : list) {   
+      System.out.println();
+      System.out.println("- MEMBER (Verbose list) ---------");
+      System.out.println("| Name: " + member.getName() + " (" + member.getPersonalNumber() + ")");
+      System.out.println("| Member ID: " + member.getMemberId());
+      System.out.println("|");
+
+      // Prints boat information
+      view.boatInformation(member.getBoatList());
+
+      System.out.println("---------------------------------");
+    }
+  }
+
+  /**
+   * Compact list: name, member id and number of boats.
+   * @param list Member list.
+   */
+  public void printCompactList(ArrayList<Member> list) {
+    for (Member member : list) {
+      
+      System.out.println();
+      System.out.println("- MEMBER (Compact list) -----");
+      System.out.println("| Name: " + member.getName());
+      System.out.println("| Member ID: " + member.getMemberId());
+
+      int numberOfBoats = member.getBoatList().size();
+      System.out.println("| Number of boats: " + numberOfBoats);
+      System.out.println("-----------------------------");
+    }
+  }
+
 }
