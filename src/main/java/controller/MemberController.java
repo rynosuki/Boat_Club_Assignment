@@ -48,7 +48,7 @@ public class MemberController {
    */
   public void addMember() {
     try {
-      String name = view.getInputValue("Name of person: ");
+      String name = view.getInputValue("Name of person: (2+ characters)");
       String personalNumber = view.getInputValue("Personalnumber: ");
       Member tempModel = new Member(name, personalNumber, new MemberId().generateMemberId(name, members));
       for (int i = 0; i < members.size(); i++) {
