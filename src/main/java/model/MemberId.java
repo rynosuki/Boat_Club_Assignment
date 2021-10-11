@@ -16,12 +16,12 @@ public class MemberId {
     boolean check = true;
     do {
       String name1 = name.substring(0, 2);
-      int number = rand.nextInt(100);
-      int firstL = rand.nextInt(26);
-      int secondL = rand.nextInt(26);
+      int number = rand.nextInt(90) + 10;
+      int firstL = rand.nextInt(25);
+      int secondL = rand.nextInt(25);
 
       name1 = name1.concat(String.valueOf(number)).concat(
-        Character.toString((char) firstL + 65)).concat(Character.toString((char) secondL + 65));
+        Character.toString((char) (firstL + 65))).concat(Character.toString((char) (secondL + 65)));
 
       if (isDuplicate(name1, members) == false) {
         return name1;

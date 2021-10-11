@@ -11,7 +11,7 @@ import view.MemberView;
  */
 public class MemberController {
   private Member model;
-  public ArrayList<Member> members;
+  private ArrayList<Member> members;
   private MemberView view;
 
   public MemberController(ArrayList<Member> members) {
