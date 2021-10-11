@@ -47,19 +47,24 @@ public class MemberController {
    * Used to create members and add them to the memberlist.
    */
   public void addMember() {
-    String name = view.getInputValue("Name of person: ");
-    String personalNumber = view.getInputValue("Personalnumber: ");
-    Member tempModel = new Member(name, personalNumber, new MemberId().generateMemberId(name, members));
-    for (int i = 0; i < members.size(); i++) {
-      if (members.get(i).getPersonalNumber().equals(tempModel.getPersonalNumber())) {
-        String temp = view.getInputValue("Your personal number already exists in our database. " + "Try again Y/N?");
-        if (temp.equalsIgnoreCase("Y")) {
-          personalNumber = view.getInputValue("Personalnumber: ");
-          tempModel.setPersonalNumber(personalNumber);
+    try {
+      String name = view.getInputValue("Name of person: ");
+      String personalNumber = view.getInputValue("Personalnumber: ");
+      Member tempModel = new Member(name, personalNumber, new MemberId().generateMemberId(name, members));
+      for (int i = 0; i < members.size(); i++) {
+        if (members.get(i).getPersonalNumber().equals(tempModel.getPersonalNumber())) {
+          String temp = view.getInputValue("Your personal number already exists in our database. " + "Try again Y/N?");
+          if (temp.equalsIgnoreCase("Y")) {
+            personalNumber = view.getInputValue("Personalnumber: ");
+            tempModel.setPersonalNumber(personalNumber);
+          }
         }
       }
+      this.members.add(tempModel);
+    } catch (Exception e) {
+      System.out.println("There was an error in ur input, try again.");
+      addMember();
     }
-    this.members.add(tempModel);
   }
 
   public void printMenu() {
