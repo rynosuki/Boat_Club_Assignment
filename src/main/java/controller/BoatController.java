@@ -33,14 +33,20 @@ public class BoatController {
   }
 
   /**
-   * Used to create boatss and add them to the boats boatlist.
+   * Used to create boats and add them to the boats boatlist.
    */
   public Boat addBoat() {
-    String name = view.getInputValue("Name of boat: ");
-    String length = view.getInputValue("Length: ");
-    String type = view.getInputValue("Type of boat: ");
-    Boat tempModel = new Boat(name, type, Double.parseDouble(length));
-    return tempModel;
+    try {
+      String name = view.getInputValue("Name of boat: ");
+      String length = view.getInputValue("Length: ");
+      String type = view.getInputValue("Type of boat: ");
+      Boat tempModel = new Boat(name, type, Double.parseDouble(length));
+      return tempModel;
+    } catch (Exception e) {
+      System.out.println("One of the inputs was invalid, try again.");
+      addBoat();
+    }
+    return null;
   }
 
   public void printMenu() {

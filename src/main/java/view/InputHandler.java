@@ -16,4 +16,13 @@ public class InputHandler {
     }
     return null;
   }
+
+  public double getInputDouble() {
+    try {
+      return sc.nextDouble();
+    } catch (Exception e) {
+      // TODO: handle exception
+    }
+    return 0;
+  }
 }
