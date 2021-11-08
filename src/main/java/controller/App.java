@@ -1,6 +1,7 @@
 package controller;
 
 import model.LoadHandler;
+import model.MemberRegister;
 import view.MainView;
 
 /**
@@ -23,7 +24,7 @@ public class App {
 
   private void start() {
     LoadHandler lhandler = new LoadHandler();
-    this.mcontroller = new MemberController(lhandler.getMemberList());
+    this.mcontroller = new MemberController(new MemberRegister(lhandler.getMemberList()));
     this.bcontroller = new BoatController();
     this.mainView = new MainView();
 
@@ -34,41 +35,40 @@ public class App {
     mainView.printView();
     int choice = mainView.getChoice();
     switch (choice) {
-      case 1:
-        memberChoice();
-        break;
-      case 2:
-        boatChoice();
-        break;
-      case 3:
-        System.exit(0);
-        break;
-      default:
-        break;
+    case 1:
+      memberChoice();
+      break;
+    case 2:
+      boatChoice();
+      break;
+    case 3:
+      System.exit(0);
+      break;
+    default:
+      break;
     }
   }
 
   private void boatChoice() {
-    mcontroller.printMessage("Choose a member: ");
     mcontroller.setCurrentMember();
     bcontroller.printMenu();
     int choice = mainView.getChoice();
 
     switch (choice) {
-      case 1:
-        mcontroller.addBoatToMember(bcontroller.addBoat());
-        break;
-      case 2:
-        mcontroller.deleteBoat(bcontroller.chooseBoat(mcontroller.getMemberBoats()));
-        break;
-      case 3:
-        bcontroller.changeBoat(mcontroller.getMemberBoats());
-        break;
-      case 4:
-        printMain();
-        break;
-      default:
-        break;
+    case 1:
+      mcontroller.addBoatToMember(bcontroller.addBoat());
+      break;
+    case 2:
+      mcontroller.deleteBoat(bcontroller.chooseBoat(mcontroller.getMemberBoats()));
+      break;
+    case 3:
+      bcontroller.changeBoat(mcontroller.getMemberBoats());
+      break;
+    case 4:
+      printMain();
+      break;
+    default:
+      break;
     }
     printMain();
   }
@@ -78,29 +78,29 @@ public class App {
     int choice = mainView.getChoice();
 
     switch (choice) {
-      case 1:
-        mcontroller.addMember();
-        break;
-      case 2:
-        mcontroller.deleteMember();
-        break;
-      case 3:
-        mcontroller.changeMember();
-        break;
-      case 4:
-        mcontroller.overviewMember();
-        break;
-      case 5:
-        mcontroller.verboseList();
-        break;
-      case 6:
-        mcontroller.compactList();
-        break;
-      case 7:
-        printMain();
-        break;
-      default:
-        break;
+    case 1:
+      mcontroller.addMember();
+      break;
+    case 2:
+      mcontroller.deleteMember();
+      break;
+    case 3:
+      mcontroller.changeMember();
+      break;
+    case 4:
+      mcontroller.overviewMember();
+      break;
+    case 5:
+      mcontroller.verboseList();
+      break;
+    case 6:
+      mcontroller.compactList();
+      break;
+    case 7:
+      printMain();
+      break;
+    default:
+      break;
     }
     memberChoice();
   }

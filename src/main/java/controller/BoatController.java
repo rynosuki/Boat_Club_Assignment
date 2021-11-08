@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 import model.Boat;
 import view.BoatView;
@@ -57,10 +58,6 @@ public class BoatController {
     return model.getBoatId();
   }
 
-  public void printMessage(String message) {
-    view.printMessage(message);
-  }
-
   /**
    * Used to change boat info, user provides which boat needs to be changed.
    */
@@ -68,16 +65,16 @@ public class BoatController {
     this.model = view.boatChoice(list);
     int choice = view.changeChoice();
     switch (choice) {
-      case 1:
-        setBoatId(view.getInputValue("Enter new name for boat:"));
-        break;
-      case 2:
-        setBoatType(view.getInputValue("Enter new type for boat:"));
-        break;
-      case 3:
-        break;
-      default:
-        break;
+    case 1:
+      setBoatId(view.getInputValue("Enter new name for boat:"));
+      break;
+    case 2:
+      setBoatType(view.getInputValue("Enter new type for boat:"));
+      break;
+    case 3:
+      break;
+    default:
+      break;
     }
   }
 

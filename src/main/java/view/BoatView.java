@@ -1,6 +1,7 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 import model.Boat;
 
@@ -45,15 +46,13 @@ public class BoatView implements View {
    * @return returns the boat that is at the chosen value.
    */
   public Boat boatChoice(ArrayList<Boat> list) {
-    if (list.size() > 0) {
-      for (int i = 0; i < list.size(); i++) {
-        System.out.println(i + " " + list.get(i).getBoatId());
-      }
-      System.out.println("Choose boat: ");
-      String temp = input.getInputString();
-      return list.get(Integer.parseInt(temp));
+    System.out.println("Select a boat: ");
+    for (Boat b : list) {
+      System.out.println(list.indexOf(b) + " " + b.getBoatId());
     }
-    return null;
+    System.out.println();
+    String temp = input.getInputString();
+    return list.get(Integer.parseInt(temp));
   }
 
   /**
@@ -92,6 +91,7 @@ public class BoatView implements View {
 
   /**
    * Prints boat information.
+   * 
    * @param boatList A list conatining boats.
    */
   public void boatInformation(ArrayList<Boat> boatList) {

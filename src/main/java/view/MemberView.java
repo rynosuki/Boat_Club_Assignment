@@ -1,6 +1,8 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 
 import model.Member;
 
@@ -8,12 +10,10 @@ import model.Member;
  * Used for all the user inputs and user interface.
  */
 public class MemberView implements View {
-  private ArrayList<Member> list;
-  private InputHandler input;
+  private InputHandler input = new InputHandler();
 
-  public MemberView(ArrayList<Member> list) {
-    this.input = new InputHandler();
-    this.list = list;
+  public enum choiceValue {
+    NAME, PERSONALNUMBER, NONE
   }
 
   /**
@@ -38,9 +38,9 @@ public class MemberView implements View {
   /**
    * Goes through the entire list and prints out the name + id.
    */
-  public void printMemberList() {
-    for (int i = 0; i < list.size(); i++) {
-      System.out.println(i + " " + list.get(i).getName() + " " + list.get(i).getMemberId());
+  public void printMemberList(ArrayList<Member> list) {
+    for (Member m : list) {
+      System.out.println(list.indexOf(m) + " " + m.getName() + " " + m.getMemberId());
     }
   }
 
@@ -49,16 +49,14 @@ public class MemberView implements View {
    * 
    * @return returns the member that is at the chosen value.
    */
-  public Member memberChoice() {
-    if (list.size() > 0) {
-      for (int i = 0; i < list.size(); i++) {
-        System.out.println(i + " " + list.get(i).getName() + " " + list.get(i).getMemberId());
-      }
-      System.out.println("Choose member: ");
-      String temp = input.getInputString();
-      return list.get(Integer.parseInt(temp));
+  public Member memberChoice(ArrayList<Member> list) {
+    System.out.println("Select a member: ");
+    for (Member m : list) {
+      System.out.println(list.indexOf(m) + " " + m.getName() + " " + m.getMemberId());
     }
-    return null;
+    System.out.println("Choose member: ");
+    String temp = input.getInputString();
+    return list.get(Integer.parseInt(temp));
   }
 
   /**
@@ -66,15 +64,15 @@ public class MemberView implements View {
    * 
    * @return the integer choice of the user.
    */
-  public int changeChoice() {
+  public choiceValue changeChoice() {
     System.out.println("What do you want to change? (Name, Personalnumber)");
     String temp = input.getInputString();
     if (temp.equalsIgnoreCase("Name")) {
-      return 1;
+      return choiceValue.NAME;
     } else if (temp.equalsIgnoreCase("Personalnumber")) {
-      return 2;
+      return choiceValue.PERSONALNUMBER;
     }
-    return 3;
+    return choiceValue.NONE;
   }
 
   public String getInputValue(String choice) {
@@ -104,15 +102,15 @@ public class MemberView implements View {
   public void printVerboseList(ArrayList<Member> list) {
     BoatView view = new BoatView();
 
-    for (Member member : list) {
+    for (Member m : list) {
       System.out.println();
       System.out.println("- MEMBER (Verbose list) ---------");
-      System.out.println("| Name: " + member.getName() + " (" + member.getPersonalNumber() + ")");
-      System.out.println("| Member ID: " + member.getMemberId());
+      System.out.println("| Name: " + m.getName() + " (" + m.getPersonalNumber() + ")");
+      System.out.println("| Member ID: " + m.getMemberId());
       System.out.println("|");
 
       // Prints boat information
-      view.boatInformation(member.getBoatList());
+      view.boatInformation(m.getBoatList());
 
       System.out.println("---------------------------------");
     }
@@ -124,14 +122,13 @@ public class MemberView implements View {
    * @param list Member list.
    */
   public void printCompactList(ArrayList<Member> list) {
-    for (Member member : list) {
-
+    for (Member m : list) {
       System.out.println();
       System.out.println("- MEMBER (Compact list) -----");
-      System.out.println("| Name: " + member.getName());
-      System.out.println("| Member ID: " + member.getMemberId());
+      System.out.println("| Name: " + m.getName());
+      System.out.println("| Member ID: " + m.getMemberId());
 
-      int numberOfBoats = member.getBoatList().size();
+      int numberOfBoats = m.getBoatList().size();
       System.out.println("| Number of boats: " + numberOfBoats);
       System.out.println("-----------------------------");
     }

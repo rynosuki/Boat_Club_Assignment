@@ -1,13 +1,14 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.Random;
 
 /**
  * Handles creation of memberIDs and also returns it.
  */
 public class MemberId {
-  
+
   /**
    * Create memberid for the members.
    */
@@ -20,8 +21,8 @@ public class MemberId {
       int firstL = rand.nextInt(25);
       int secondL = rand.nextInt(25);
 
-      name1 = name1.concat(String.valueOf(number)).concat(
-        Character.toString((char) (firstL + 65))).concat(Character.toString((char) (secondL + 65)));
+      name1 = name1.concat(String.valueOf(number)).concat(Character.toString((char) (firstL + 65)))
+          .concat(Character.toString((char) (secondL + 65)));
 
       if (isDuplicate(name1, members) == false) {
         return name1;
@@ -31,11 +32,9 @@ public class MemberId {
   }
 
   private boolean isDuplicate(String name, ArrayList<Member> members) {
-    if (members.size() != 0) {
-      for (int i = 0; i < members.size(); i++) {
-        if (name.equals(members.get(i).getMemberId())) {
-          return true;
-        }
+    for (Member m : members) {
+      if (m.getName().equals(name)) {
+        return true;
       }
     }
     return false;
