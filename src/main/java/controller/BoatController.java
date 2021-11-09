@@ -1,10 +1,10 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.ListIterator;
 
 import model.Boat;
 import view.BoatView;
+import view.View.menuChoice;
 
 /**
  * Handles all the things related to the boat object.
@@ -50,8 +50,9 @@ public class BoatController {
     return null;
   }
 
-  public void printMenu() {
+  public menuChoice printMenu() {
     this.view.printView();
+    return this.view.getMenuChoice();
   }
 
   public String getBoatId() {

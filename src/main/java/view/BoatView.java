@@ -1,7 +1,6 @@
 package view;
 
 import java.util.ArrayList;
-import java.util.ListIterator;
 
 import model.Boat;
 
@@ -10,6 +9,11 @@ import model.Boat;
  */
 public class BoatView implements View {
   private InputHandler input;
+
+  private static final String add = "1";
+  private static final String del = "2";
+  private static final String change = "3";
+  private static final String quit = "4";
 
   public BoatView() {
     this.input = new InputHandler();
@@ -25,6 +29,21 @@ public class BoatView implements View {
     System.out.println("2. Remove Boat");
     System.out.println("3. Change Boat");
     System.out.println("4. Back to menu");
+  }
+
+  public menuChoice getMenuChoice() {
+    switch (input.getInputString()) {
+    case add:
+      return menuChoice.ADD;
+    case del:
+      return menuChoice.DEL;
+    case change:
+      return menuChoice.CHANGE;
+    case quit:
+      return menuChoice.QUIT;
+    default:
+      return null;
+    }
   }
 
   public void printMessage(String message) {

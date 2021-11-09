@@ -8,6 +8,7 @@ import model.MemberId;
 import model.MemberRegister;
 import view.MemberView;
 import view.MemberView.choiceValue;
+import view.View.menuChoice;
 
 /**
  * Handles all the things related to the member object.
@@ -73,8 +74,9 @@ public class MemberController {
     }
   }
 
-  public void printMenu() {
+  public menuChoice printMenu() {
     view.printView();
+    return view.getMenuChoice();
   }
 
   public String getMemberId() {

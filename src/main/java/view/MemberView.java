@@ -1,8 +1,6 @@
 package view;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
 
 import model.Member;
 
@@ -15,6 +13,14 @@ public class MemberView implements View {
   public enum choiceValue {
     NAME, PERSONALNUMBER, NONE
   }
+
+  private static final String add = "1";
+  private static final String del = "2";
+  private static final String change = "3";
+  private static final String view = "4";
+  private static final String verbose = "5";
+  private static final String compact = "6";
+  private static final String quit = "7";
 
   /**
    * Prints out the main menu for members.
@@ -29,6 +35,27 @@ public class MemberView implements View {
     System.out.println("5. Show verbose list");
     System.out.println("6. Show compact list");
     System.out.println("7. Return to menu");
+  }
+
+  public menuChoice getMenuChoice() {
+    switch (input.getInputString()) {
+    case add:
+      return menuChoice.ADD;
+    case del:
+      return menuChoice.DEL;
+    case change:
+      return menuChoice.CHANGE;
+    case view:
+      return menuChoice.VIEW;
+    case verbose:
+      return menuChoice.VERBOSE;
+    case compact:
+      return menuChoice.COMPACT;
+    case quit:
+      return menuChoice.QUIT;
+    default:
+      return null;
+    }
   }
 
   public void printMessage(String message) {

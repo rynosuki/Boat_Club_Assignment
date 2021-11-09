@@ -6,6 +6,10 @@ package view;
 public class MainView implements View {
   InputHandler input = new InputHandler();
 
+  private static final String member = "1";
+  private static final String boat = "2";
+  private static final String quit = "3";
+
   public MainView() {
   }
 
@@ -16,6 +20,19 @@ public class MainView implements View {
     System.out.println("1. Member Menu");
     System.out.println("2. Boat Menu");
     System.out.println("3. Quit");
+  }
+
+  public menuChoice getMenuChoice() {
+    switch (input.getInputString()) {
+    case member:
+      return menuChoice.MEMBER;
+    case boat:
+      return menuChoice.BOAT;
+    case quit:
+      return menuChoice.QUIT;
+    default:
+      return null;
+    }
   }
 
   public void printMessage(String message) {
