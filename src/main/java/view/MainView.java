@@ -22,16 +22,20 @@ public class MainView implements View {
     System.out.println("3. Quit");
   }
 
-  public menuChoice getMenuChoice() {
+  /**
+   * Get menu choice.
+   * @return
+   */
+  public MenuChoice getMenuChoice() {
     switch (input.getInputString()) {
-    case member:
-      return menuChoice.MEMBER;
-    case boat:
-      return menuChoice.BOAT;
-    case quit:
-      return menuChoice.QUIT;
-    default:
-      return null;
+      case member:
+        return MenuChoice.MEMBER;
+      case boat:
+        return MenuChoice.BOAT;
+      case quit:
+        return MenuChoice.QUIT;
+      default:
+        return null;
     }
   }
 

@@ -7,7 +7,7 @@ public interface View {
   /**
    * Used as interface for views.
    */
-  public enum menuChoice {
+  public enum MenuChoice {
     ADD, DEL, CHANGE, VIEW, VERBOSE, COMPACT, QUIT, BOAT, MEMBER
   }
 

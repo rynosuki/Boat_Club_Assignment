@@ -10,7 +10,7 @@ import model.Member;
 public class MemberView implements View {
   private InputHandler input = new InputHandler();
 
-  public enum choiceValue {
+  public enum ChoiceValue {
     NAME, PERSONALNUMBER, NONE
   }
 
@@ -37,24 +37,28 @@ public class MemberView implements View {
     System.out.println("7. Return to menu");
   }
 
-  public menuChoice getMenuChoice() {
+  /**
+   * Get menu choice.
+   * @return
+   */
+  public MenuChoice getMenuChoice() {
     switch (input.getInputString()) {
-    case add:
-      return menuChoice.ADD;
-    case del:
-      return menuChoice.DEL;
-    case change:
-      return menuChoice.CHANGE;
-    case view:
-      return menuChoice.VIEW;
-    case verbose:
-      return menuChoice.VERBOSE;
-    case compact:
-      return menuChoice.COMPACT;
-    case quit:
-      return menuChoice.QUIT;
-    default:
-      return null;
+      case add:
+        return MenuChoice.ADD;
+      case del:
+        return MenuChoice.DEL;
+      case change:
+        return MenuChoice.CHANGE;
+      case view:
+        return MenuChoice.VIEW;
+      case verbose:
+        return MenuChoice.VERBOSE;
+      case compact:
+        return MenuChoice.COMPACT;
+      case quit:
+        return MenuChoice.QUIT;
+      default:
+        return null;
     }
   }
 
@@ -91,15 +95,15 @@ public class MemberView implements View {
    * 
    * @return the integer choice of the user.
    */
-  public choiceValue changeChoice() {
+  public ChoiceValue changeChoice() {
     System.out.println("What do you want to change? (Name, Personalnumber)");
     String temp = input.getInputString();
     if (temp.equalsIgnoreCase("Name")) {
-      return choiceValue.NAME;
+      return ChoiceValue.NAME;
     } else if (temp.equalsIgnoreCase("Personalnumber")) {
-      return choiceValue.PERSONALNUMBER;
+      return ChoiceValue.PERSONALNUMBER;
     }
-    return choiceValue.NONE;
+    return ChoiceValue.NONE;
   }
 
   public String getInputValue(String choice) {

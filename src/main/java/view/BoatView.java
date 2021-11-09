@@ -31,18 +31,22 @@ public class BoatView implements View {
     System.out.println("4. Back to menu");
   }
 
-  public menuChoice getMenuChoice() {
+  /**
+   * Get menu choice.
+   * @return
+   */
+  public MenuChoice getMenuChoice() {
     switch (input.getInputString()) {
-    case add:
-      return menuChoice.ADD;
-    case del:
-      return menuChoice.DEL;
-    case change:
-      return menuChoice.CHANGE;
-    case quit:
-      return menuChoice.QUIT;
-    default:
-      return null;
+      case add:
+        return MenuChoice.ADD;
+      case del:
+        return MenuChoice.DEL;
+      case change:
+        return MenuChoice.CHANGE;
+      case quit:
+        return MenuChoice.QUIT;
+      default:
+        return null;
     }
   }
 

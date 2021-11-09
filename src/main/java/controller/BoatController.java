@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import model.Boat;
 import view.BoatView;
-import view.View.menuChoice;
+import view.View.MenuChoice;
 
 /**
  * Handles all the things related to the boat object.
@@ -50,7 +50,7 @@ public class BoatController {
     return null;
   }
 
-  public menuChoice printMenu() {
+  public MenuChoice printMenu() {
     this.view.printView();
     return this.view.getMenuChoice();
   }
@@ -66,16 +66,16 @@ public class BoatController {
     this.model = view.boatChoice(list);
     int choice = view.changeChoice();
     switch (choice) {
-    case 1:
-      setBoatId(view.getInputValue("Enter new name for boat:"));
-      break;
-    case 2:
-      setBoatType(view.getInputValue("Enter new type for boat:"));
-      break;
-    case 3:
-      break;
-    default:
-      break;
+      case 1:
+        setBoatId(view.getInputValue("Enter new name for boat:"));
+        break;
+      case 2:
+        setBoatType(view.getInputValue("Enter new type for boat:"));
+        break;
+      case 3:
+        break;
+      default:
+        break;
     }
   }
 
