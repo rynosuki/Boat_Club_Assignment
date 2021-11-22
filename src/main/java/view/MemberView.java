@@ -8,13 +8,19 @@ import model.Member;
  * Used for all the user inputs and user interface.
  */
 public class MemberView implements View {
-  private ArrayList<Member> list;
-  private InputHandler input;
+  private InputHandler input = new InputHandler();
 
-  public MemberView(ArrayList<Member> list) {
-    this.input = new InputHandler();
-    this.list = list;
+  public enum ChoiceValue {
+    NAME, PERSONALNUMBER, NONE
   }
+
+  private static final String add = "1";
+  private static final String del = "2";
+  private static final String change = "3";
+  private static final String view = "4";
+  private static final String verbose = "5";
+  private static final String compact = "6";
+  private static final String quit = "7";
 
   /**
    * Prints out the main menu for members.
@@ -31,6 +37,31 @@ public class MemberView implements View {
     System.out.println("7. Return to menu");
   }
 
+  /**
+   * Get menu choice.
+   * @return
+   */
+  public MenuChoice getMenuChoice() {
+    switch (input.getInputString()) {
+      case add:
+        return MenuChoice.ADD;
+      case del:
+        return MenuChoice.DEL;
+      case change:
+        return MenuChoice.CHANGE;
+      case view:
+        return MenuChoice.VIEW;
+      case verbose:
+        return MenuChoice.VERBOSE;
+      case compact:
+        return MenuChoice.COMPACT;
+      case quit:
+        return MenuChoice.QUIT;
+      default:
+        return null;
+    }
+  }
+
   public void printMessage(String message) {
     System.out.println(message);
   }
@@ -38,9 +69,9 @@ public class MemberView implements View {
   /**
    * Goes through the entire list and prints out the name + id.
    */
-  public void printMemberList() {
-    for (int i = 0; i < list.size(); i++) {
-      System.out.println(i + " " + list.get(i).getName() + " " + list.get(i).getMemberId());
+  public void printMemberList(ArrayList<Member> list) {
+    for (Member m : list) {
+      System.out.println(list.indexOf(m) + " " + m.getName() + " " + m.getMemberId());
     }
   }
 
@@ -49,16 +80,14 @@ public class MemberView implements View {
    * 
    * @return returns the member that is at the chosen value.
    */
-  public Member memberChoice() {
-    if (list.size() > 0) {
-      for (int i = 0; i < list.size(); i++) {
-        System.out.println(i + " " + list.get(i).getName() + " " + list.get(i).getMemberId());
-      }
-      System.out.println("Choose member: ");
-      String temp = input.getInputString();
-      return list.get(Integer.parseInt(temp));
+  public Member memberChoice(ArrayList<Member> list) {
+    System.out.println("Select a member: ");
+    for (Member m : list) {
+      System.out.println(list.indexOf(m) + " " + m.getName() + " " + m.getMemberId());
     }
-    return null;
+    System.out.println("Choose member: ");
+    String temp = input.getInputString();
+    return list.get(Integer.parseInt(temp));
   }
 
   /**
@@ -66,15 +95,15 @@ public class MemberView implements View {
    * 
    * @return the integer choice of the user.
    */
-  public int changeChoice() {
+  public ChoiceValue changeChoice() {
     System.out.println("What do you want to change? (Name, Personalnumber)");
     String temp = input.getInputString();
     if (temp.equalsIgnoreCase("Name")) {
-      return 1;
+      return ChoiceValue.NAME;
     } else if (temp.equalsIgnoreCase("Personalnumber")) {
-      return 2;
+      return ChoiceValue.PERSONALNUMBER;
     }
-    return 3;
+    return ChoiceValue.NONE;
   }
 
   public String getInputValue(String choice) {
@@ -104,15 +133,15 @@ public class MemberView implements View {
   public void printVerboseList(ArrayList<Member> list) {
     BoatView view = new BoatView();
 
-    for (Member member : list) {
+    for (Member m : list) {
       System.out.println();
       System.out.println("- MEMBER (Verbose list) ---------");
-      System.out.println("| Name: " + member.getName() + " (" + member.getPersonalNumber() + ")");
-      System.out.println("| Member ID: " + member.getMemberId());
+      System.out.println("| Name: " + m.getName() + " (" + m.getPersonalNumber() + ")");
+      System.out.println("| Member ID: " + m.getMemberId());
       System.out.println("|");
 
       // Prints boat information
-      view.boatInformation(member.getBoatList());
+      view.boatInformation(m.getBoatList());
 
       System.out.println("---------------------------------");
     }
@@ -124,14 +153,13 @@ public class MemberView implements View {
    * @param list Member list.
    */
   public void printCompactList(ArrayList<Member> list) {
-    for (Member member : list) {
-
+    for (Member m : list) {
       System.out.println();
       System.out.println("- MEMBER (Compact list) -----");
-      System.out.println("| Name: " + member.getName());
-      System.out.println("| Member ID: " + member.getMemberId());
+      System.out.println("| Name: " + m.getName());
+      System.out.println("| Member ID: " + m.getMemberId());
 
-      int numberOfBoats = member.getBoatList().size();
+      int numberOfBoats = m.getBoatList().size();
       System.out.println("| Number of boats: " + numberOfBoats);
       System.out.println("-----------------------------");
     }

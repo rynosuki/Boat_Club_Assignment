@@ -1,22 +1,32 @@
 package controller;
 
 import java.util.ArrayList;
+
 import model.Boat;
 import model.Member;
 import model.MemberId;
+import model.MemberRegister;
 import view.MemberView;
+import view.MemberView.ChoiceValue;
+import view.View.MenuChoice;
 
 /**
  * Handles all the things related to the member object.
  */
 public class MemberController {
   private Member model;
-  private ArrayList<Member> members;
+  private ArrayList<Member> list;
+  private MemberRegister reg;
   private MemberView view;
 
-  public MemberController(ArrayList<Member> members) {
-    this.members = members;
-    view = new MemberView(members);
+  /**
+   * Member controller.
+   * @param memRegister Member register.
+   */
+  public MemberController(MemberRegister memRegister) {
+    this.list = memRegister.getListCopy();
+    this.reg = memRegister;
+    view = new MemberView();
   }
 
   public void setMemberName(String name) {
@@ -40,7 +50,7 @@ public class MemberController {
   }
 
   public void setCurrentMember() {
-    this.model = view.memberChoice();
+    this.model = view.memberChoice(list);
   }
 
   /**
@@ -51,9 +61,9 @@ public class MemberController {
       String name = view.getInputValue("Name of person: (2+ characters)");
       String personalNumber = view.getInputValue("Personalnumber: ");
       Member tempModel = new Member(name, personalNumber, 
-          new MemberId().generateMemberId(name, members));
-      for (int i = 0; i < members.size(); i++) {
-        if (members.get(i).getPersonalNumber().equals(tempModel.getPersonalNumber())) {
+          new MemberId().generateMemberId(name, list));
+      for (Member i : list) {
+        if (i.getPersonalNumber().equals(tempModel.getPersonalNumber())) {
           String temp = view.getInputValue("Your personal number already exists in our database. " 
               + "Try again Y/N?");
           if (temp.equalsIgnoreCase("Y")) {
@@ -62,15 +72,17 @@ public class MemberController {
           }
         }
       }
-      this.members.add(tempModel);
+      reg.addMember(tempModel);
+      this.list = reg.getListCopy();
     } catch (Exception e) {
-      System.out.println("There was an error in ur input, try again.");
+      view.printMessage("There was an error in ur input, try again.");
       addMember();
     }
   }
 
-  public void printMenu() {
-    this.view.printView();
+  public MenuChoice printMenu() {
+    view.printView();
+    return view.getMenuChoice();
   }
 
   public String getMemberId() {
@@ -81,25 +93,21 @@ public class MemberController {
     model.addBoat(boat);
   }
 
-  public void printMessage(String message) {
-    view.printMessage(message);
-  }
-
   /**
    * Used to change member info, user provides which member needs to be changed.
    */
   public void changeMember() {
-    this.model = view.memberChoice();
-    int choice = view.changeChoice();
+    this.model = view.memberChoice(list);
+    ChoiceValue choice = view.changeChoice();
     switch (choice) {
-      case 1:
+      case NAME:
         setMemberName(view.getInputValue("Enter new name for member:"));
-        view.printMemberList();
+        view.printMemberList(list);
         break;
-      case 2:
+      case PERSONALNUMBER:
         setMemberPersonalNumber(view.getInputValue("Enter new personalnumber for member:"));
         break;
-      case 3:
+      case NONE:
         break;
       default:
         break;
@@ -107,23 +115,29 @@ public class MemberController {
   }
 
   public void overviewMember() {
-    view.showOverview(view.memberChoice());
+    Member memberChoice = view.memberChoice(list);
+    view.showOverview(memberChoice);
   }
 
+  /**
+   * Delete member.
+   */
   public void deleteMember() {
-    members.remove(view.memberChoice());
+    Member memberChoice = view.memberChoice(list);
+    reg.deleteMember(memberChoice);
+    this.list = reg.getListCopy();
   }
 
   public void deleteBoat(Boat boat) {
-    this.model.getBoatList().remove(boat);
+    model.removeBoat(boat);
   }
 
   public void verboseList() {
-    view.printVerboseList(this.members);
+    view.printVerboseList(list);
   }
 
   public void compactList() {
-    view.printCompactList(this.members);
+    view.printCompactList(list);
   }
-  
+
 }

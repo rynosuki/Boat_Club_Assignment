@@ -10,6 +10,11 @@ import model.Boat;
 public class BoatView implements View {
   private InputHandler input;
 
+  private static final String add = "1";
+  private static final String del = "2";
+  private static final String change = "3";
+  private static final String quit = "4";
+
   public BoatView() {
     this.input = new InputHandler();
   }
@@ -24,6 +29,25 @@ public class BoatView implements View {
     System.out.println("2. Remove Boat");
     System.out.println("3. Change Boat");
     System.out.println("4. Back to menu");
+  }
+
+  /**
+   * Get menu choice.
+   * @return
+   */
+  public MenuChoice getMenuChoice() {
+    switch (input.getInputString()) {
+      case add:
+        return MenuChoice.ADD;
+      case del:
+        return MenuChoice.DEL;
+      case change:
+        return MenuChoice.CHANGE;
+      case quit:
+        return MenuChoice.QUIT;
+      default:
+        return null;
+    }
   }
 
   public void printMessage(String message) {
@@ -45,15 +69,13 @@ public class BoatView implements View {
    * @return returns the boat that is at the chosen value.
    */
   public Boat boatChoice(ArrayList<Boat> list) {
-    if (list.size() > 0) {
-      for (int i = 0; i < list.size(); i++) {
-        System.out.println(i + " " + list.get(i).getBoatId());
-      }
-      System.out.println("Choose boat: ");
-      String temp = input.getInputString();
-      return list.get(Integer.parseInt(temp));
+    System.out.println("Select a boat: ");
+    for (Boat b : list) {
+      System.out.println(list.indexOf(b) + " " + b.getBoatId());
     }
-    return null;
+    System.out.println();
+    String temp = input.getInputString();
+    return list.get(Integer.parseInt(temp));
   }
 
   /**
@@ -92,6 +114,7 @@ public class BoatView implements View {
 
   /**
    * Prints boat information.
+   * 
    * @param boatList A list conatining boats.
    */
   public void boatInformation(ArrayList<Boat> boatList) {

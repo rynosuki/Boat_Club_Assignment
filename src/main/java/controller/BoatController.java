@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.Boat;
 import view.BoatView;
+import view.View.MenuChoice;
 
 /**
  * Handles all the things related to the boat object.
@@ -49,16 +50,13 @@ public class BoatController {
     return null;
   }
 
-  public void printMenu() {
+  public MenuChoice printMenu() {
     this.view.printView();
+    return this.view.getMenuChoice();
   }
 
   public String getBoatId() {
     return model.getBoatId();
-  }
-
-  public void printMessage(String message) {
-    view.printMessage(message);
   }
 
   /**

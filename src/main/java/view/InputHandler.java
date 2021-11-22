@@ -8,6 +8,10 @@ import java.util.Scanner;
 public class InputHandler {
   private Scanner sc = new Scanner(System.in, "UTF-8");
 
+  /**
+   * Get input as string.
+   * @return
+   */
   public String getInputString() {
     try {
       return sc.nextLine();
@@ -17,6 +21,10 @@ public class InputHandler {
     return null;
   }
 
+  /**
+   * Get input as Double.
+   * @return
+   */
   public double getInputDouble() {
     try {
       return sc.nextDouble();

@@ -6,9 +6,9 @@ import java.util.ArrayList;
  * Handles the loading of all elements of the program.
  */
 public class LoadHandler implements FileHandler {
-  ArrayList<Member> memberList = new ArrayList<>();
-  ArrayList<Boat> boatList = new ArrayList<>();
-  
+  private ArrayList<Member> memberList = new ArrayList<>();
+  private ArrayList<Boat> boatList = new ArrayList<>();
+
   /**
    * Loads all the members abd boats.
    */
