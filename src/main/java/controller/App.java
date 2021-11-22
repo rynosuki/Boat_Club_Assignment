@@ -36,17 +36,17 @@ public class App {
     mainView.printView();
     MenuChoice choice = mainView.getMenuChoice();
     switch (choice) {
-    case MEMBER:
-      memberChoice();
-      break;
-    case BOAT:
-      boatChoice();
-      break;
-    case QUIT:
-      System.exit(0);
-      break;
-    default:
-      break;
+      case MEMBER:
+        memberChoice();
+        break;
+      case BOAT:
+        boatChoice();
+        break;
+      case QUIT:
+        System.exit(0);
+        break;
+      default:
+        break;
     }
   }
 
@@ -55,20 +55,20 @@ public class App {
     MenuChoice choice = bcontroller.printMenu();
 
     switch (choice) {
-    case ADD:
-      mcontroller.addBoatToMember(bcontroller.addBoat());
-      break;
-    case DEL:
-      mcontroller.deleteBoat(bcontroller.chooseBoat(mcontroller.getMemberBoats()));
-      break;
-    case CHANGE:
-      bcontroller.changeBoat(mcontroller.getMemberBoats());
-      break;
-    case QUIT:
-      printMain();
-      break;
-    default:
-      break;
+      case ADD:
+        mcontroller.addBoatToMember(bcontroller.addBoat());
+        break;
+      case DEL:
+        mcontroller.deleteBoat(bcontroller.chooseBoat(mcontroller.getMemberBoats()));
+        break;
+      case CHANGE:
+        bcontroller.changeBoat(mcontroller.getMemberBoats());
+        break;
+      case QUIT:
+        printMain();
+        break;
+      default:
+        break;
     }
     printMain();
   }
@@ -77,29 +77,29 @@ public class App {
     MenuChoice choice = mcontroller.printMenu();
 
     switch (choice) {
-    case ADD:
-      mcontroller.addMember();
-      break;
-    case DEL:
-      mcontroller.deleteMember();
-      break;
-    case CHANGE:
-      mcontroller.changeMember();
-      break;
-    case VIEW:
-      mcontroller.overviewMember();
-      break;
-    case VERBOSE:
-      mcontroller.verboseList();
-      break;
-    case COMPACT:
-      mcontroller.compactList();
-      break;
-    case QUIT:
-      printMain();
-      break;
-    default:
-      break;
+      case ADD:
+        mcontroller.addMember();
+        break;
+      case DEL:
+        mcontroller.deleteMember();
+        break;
+      case CHANGE:
+        mcontroller.changeMember();
+        break;
+      case VIEW:
+        mcontroller.overviewMember();
+        break;
+      case VERBOSE:
+        mcontroller.verboseList();
+        break;
+      case COMPACT:
+        mcontroller.compactList();
+        break;
+      case QUIT:
+        printMain();
+        break;
+      default:
+        break;
     }
     memberChoice();
   }
