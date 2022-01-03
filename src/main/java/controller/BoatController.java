@@ -44,7 +44,7 @@ public class BoatController {
       Boat tempModel = new Boat(name, type, Double.parseDouble(length));
       return tempModel;
     } catch (Exception e) {
-      System.out.println("One of the inputs was invalid, try again.");
+      view.printMessage("One of the inputs was invalid, try again.");
       addBoat();
     }
     return null;

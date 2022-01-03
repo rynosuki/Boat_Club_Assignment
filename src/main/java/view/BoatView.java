@@ -33,6 +33,7 @@ public class BoatView implements View {
 
   /**
    * Get menu choice.
+   * 
    * @return
    */
   public MenuChoice getMenuChoice() {
