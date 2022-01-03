@@ -15,24 +15,25 @@ public class MemberId {
     Random rand = new Random();
     boolean check = true;
     do {
-      String name1 = name.substring(0, 2);
+      String memberid = name.substring(0, 2);
       int number = rand.nextInt(90) + 10;
       int firstL = rand.nextInt(25);
       int secondL = rand.nextInt(25);
 
-      name1 = name1.concat(String.valueOf(number)).concat(Character.toString((char) (firstL + 65)))
+      memberid = memberid.concat(String.valueOf(number))
+          .concat(Character.toString((char) (firstL + 65)))
           .concat(Character.toString((char) (secondL + 65)));
 
-      if (isDuplicate(name1, members) == false) {
-        return name1;
+      if (isDuplicate(memberid, members) == false) {
+        return memberid;
       }
     } while (check == true);
     return null;
   }
 
-  private boolean isDuplicate(String name, ArrayList<Member> members) {
+  private boolean isDuplicate(String memberid, ArrayList<Member> members) {
     for (Member m : members) {
-      if (m.getName().equals(name)) {
+      if (m.getMemberId().equals(memberid)) {
         return true;
       }
     }

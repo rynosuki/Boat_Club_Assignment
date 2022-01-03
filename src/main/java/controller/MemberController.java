@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import model.Boat;
 import model.Member;
-import model.MemberId;
 import model.MemberRegister;
 import view.MemberView;
 import view.MemberView.ChoiceValue;
@@ -21,6 +20,7 @@ public class MemberController {
 
   /**
    * Member controller.
+   * 
    * @param memRegister Member register.
    */
   public MemberController(MemberRegister memRegister) {
@@ -57,27 +57,14 @@ public class MemberController {
    * Used to create members and add them to the memberlist.
    */
   public void addMember() {
-    try {
-      String name = view.getInputValue("Name of person: (2+ characters)");
-      String personalNumber = view.getInputValue("Personalnumber: ");
-      Member tempModel = new Member(name, personalNumber, 
-          new MemberId().generateMemberId(name, list));
-      for (Member i : list) {
-        if (i.getPersonalNumber().equals(tempModel.getPersonalNumber())) {
-          String temp = view.getInputValue("Your personal number already exists in our database. " 
-              + "Try again Y/N?");
-          if (temp.equalsIgnoreCase("Y")) {
-            personalNumber = view.getInputValue("Personalnumber: ");
-            tempModel.setPersonalNumber(personalNumber);
-          }
-        }
-      }
-      reg.addMember(tempModel);
-      this.list = reg.getListCopy();
-    } catch (Exception e) {
-      view.printMessage("There was an error in ur input, try again.");
+    String name = view.getInputValue("Name of person: (2+ characters) ");
+    if (name.length() < 3) {
+      view.printMessage("Too short.");
       addMember();
+      return;
     }
+    String personalNumber = view.getInputValue("Personalnumber: ");
+    this.list = this.reg.addMember(name, personalNumber);
   }
 
   public MenuChoice printMenu() {

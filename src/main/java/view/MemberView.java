@@ -39,6 +39,7 @@ public class MemberView implements View {
 
   /**
    * Get menu choice.
+   * 
    * @return
    */
   public MenuChoice getMenuChoice() {
@@ -87,7 +88,11 @@ public class MemberView implements View {
     }
     System.out.println("Choose member: ");
     String temp = input.getInputString();
-    return list.get(Integer.parseInt(temp));
+    try {
+      return list.get(Integer.parseInt(temp));
+    } catch (Exception e) {
+      return memberChoice(list);
+    }
   }
 
   /**

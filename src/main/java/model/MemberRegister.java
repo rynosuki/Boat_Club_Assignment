@@ -14,8 +14,18 @@ public class MemberRegister {
     return tempList;
   }
 
-  public void addMember(Member member) {
-    list.add(member);
+  /**
+   * Create member to add to list.
+   * 
+   * @param name           Name of member.
+   * @param personalNumber Personalnumber of member.
+   * @return
+   */
+  public ArrayList<Member> addMember(String name, String personalNumber) {
+    Member tempMember = new Member(
+        name, personalNumber, new MemberId().generateMemberId(name, this.getListCopy()));
+    this.list.add(tempMember);
+    return getListCopy();
   }
 
   public void deleteMember(Member model) {
