@@ -6,7 +6,9 @@ import model.Boat;
 import model.Member;
 import model.MemberRegister;
 import view.MemberView;
-import view.MemberView.ChoiceValue;
+import view.MemberViewSwedish;
+import view.MemberViewSwedish.ChoiceValue;
+//import view.MemberView.ChoiceValue;
 import view.View.MenuChoice;
 
 /**
@@ -16,7 +18,8 @@ public class MemberController {
   private Member model;
   private ArrayList<Member> list;
   private MemberRegister reg;
-  private MemberView view;
+  //private MemberView view;
+  private MemberViewSwedish view;
 
   /**
    * Member controller.
@@ -26,7 +29,8 @@ public class MemberController {
   public MemberController(MemberRegister memRegister) {
     this.list = memRegister.getListCopy();
     this.reg = memRegister;
-    view = new MemberView();
+    //view = new MemberView();
+    view = new MemberViewSwedish();
   }
 
   public void setMemberName(String name) {
