@@ -6,9 +6,9 @@ package view;
 public class MainViewSwedish implements View {
   InputHandler input = new InputHandler();
 
-  private static final String member = "1";
-  private static final String boat = "2";
-  private static final String quit = "3";
+  private static final String member = "m";
+  private static final String boat = "b";
+  private static final String quit = "q";
 
   public MainViewSwedish() {
   }
@@ -17,9 +17,9 @@ public class MainViewSwedish implements View {
   public void printView() {
     System.out.println("Huvudmeny - Start");
     System.out.println("--------------------");
-    System.out.println("1. Medlemmar");
-    System.out.println("2. Båtar");
-    System.out.println("3. Avsluta");
+    System.out.println(member + ". Medlemmar");
+    System.out.println(boat + ". Båtar");
+    System.out.println(quit + ". Avsluta");
   }
 
   /**

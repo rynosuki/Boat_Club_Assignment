@@ -65,6 +65,16 @@ public class MemberView implements View {
     }
   }
 
+  public ArrayList<Member> sortList(ArrayList<Member> list) {
+    Collections.sort(list, new Comparator<Member>() {
+      @Override
+      public int compare(Member s1, Member s2) {
+        return s1.getName().compareToIgnoreCase(s2.getName());
+      }
+    });
+    return list;
+  }
+
   public void printMessage(String message) {
     System.out.println(message);
   }
@@ -73,13 +83,7 @@ public class MemberView implements View {
    * Goes through the entire list and prints out the name + id.
    */
   public void printMemberList(ArrayList<Member> list) {
-
-    Collections.sort(list, new Comparator<Member>() {
-      @Override
-      public int compare(Member s1, Member s2) {
-        return s1.getName().compareToIgnoreCase(s2.getName());
-      }
-    });
+    list = sortList(list);
     
     for (Member m : list) {
       System.out.println(list.indexOf(m) + " " + m.getName() + " " + m.getMemberId());
@@ -145,6 +149,7 @@ public class MemberView implements View {
    */
   public void printVerboseList(ArrayList<Member> list) {
     BoatView view = new BoatView();
+    list = sortList(list);
 
     for (Member m : list) {
       System.out.println();
@@ -166,6 +171,8 @@ public class MemberView implements View {
    * @param list Member list.
    */
   public void printCompactList(ArrayList<Member> list) {
+    list = sortList(list);
+
     for (Member m : list) {
       System.out.println();
       System.out.println("- MEMBER (Compact list) -----");

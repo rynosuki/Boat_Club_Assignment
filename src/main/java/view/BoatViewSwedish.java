@@ -10,10 +10,10 @@ import model.Boat;
 public class BoatViewSwedish implements View {
   private InputHandler input;
 
-  private static final String add = "1";
-  private static final String del = "2";
-  private static final String change = "3";
-  private static final String quit = "4";
+  private static final String add = "a";
+  private static final String del = "d";
+  private static final String change = "c";
+  private static final String quit = "q";
 
   public BoatViewSwedish() {
     this.input = new InputHandler();
@@ -25,10 +25,10 @@ public class BoatViewSwedish implements View {
   public void printView() {
     System.out.println("Huvudmeny - Båtar");
     System.out.println("--------------------");
-    System.out.println("1. Lägg till båt");
-    System.out.println("2. Ta bort båt");
-    System.out.println("3. Ändra båt");
-    System.out.println("4. Återgå till menyn");
+    System.out.println(add + ". Lägg till båt");
+    System.out.println(del + ". Ta bort båt");
+    System.out.println(change + ". Ändra båt");
+    System.out.println(quit + ". Återgå till menyn");
   }
 
   /**

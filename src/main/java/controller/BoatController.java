@@ -3,18 +3,34 @@ package controller;
 import java.util.ArrayList;
 
 import model.Boat;
-import view.BoatView;
 import view.View.MenuChoice;
+
+// English view
+// import view.BoatView;
+
+// Swedish view
+import view.BoatViewSwedish;
+
 
 /**
  * Handles all the things related to the boat object.
  */
 public class BoatController {
   private Boat model;
-  private BoatView view;
+  
+  // English view
+  // private BoatView view;
+
+  // Swedish view
+  private BoatViewSwedish view;
 
   public BoatController() {
-    view = new BoatView();
+    // English view
+    // view = new BoatView();
+
+    // Swedish view
+    view = new BoatViewSwedish();
+
   }
 
   public void setBoatId(String name) {
