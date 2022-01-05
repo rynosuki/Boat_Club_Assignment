@@ -25,10 +25,10 @@ public class BoatView implements View {
   public void printView() {
     System.out.println("Main Menu - Boat");
     System.out.println("--------------------");
-    System.out.println("1. Add Boat");
-    System.out.println("2. Remove Boat");
-    System.out.println("3. Change Boat");
-    System.out.println("4. Back to menu");
+    System.out.println(add + ". Add Boat");
+    System.out.println(del + ". Remove Boat");
+    System.out.println(change + ". Change Boat");
+    System.out.println(quit + ". Back to menu");
   }
 
   /**

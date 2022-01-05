@@ -30,13 +30,13 @@ public class MemberView implements View {
   public void printView() {
     System.out.println("Main Menu - Member");
     System.out.println("--------------------");
-    System.out.println("1. Add member");
-    System.out.println("2. Delete member");
-    System.out.println("3. Change member");
-    System.out.println("4. View member details");
-    System.out.println("5. Show verbose list");
-    System.out.println("6. Show compact list");
-    System.out.println("7. Return to menu");
+    System.out.println(add + ". Add member");
+    System.out.println(del + ". Delete member");
+    System.out.println(change + ". Change member");
+    System.out.println(view + ". View member details");
+    System.out.println(verbose + ". Show verbose list");
+    System.out.println(compact + ". Show compact list");
+    System.out.println(quit + ". Return to menu");
   }
 
   /**

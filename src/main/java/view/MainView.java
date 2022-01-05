@@ -17,9 +17,9 @@ public class MainView implements View {
   public void printView() {
     System.out.println("Main Menu - Main");
     System.out.println("--------------------");
-    System.out.println("1. Member Menu");
-    System.out.println("2. Boat Menu");
-    System.out.println("3. Quit");
+    System.out.println(member + ". Member Menu");
+    System.out.println(boat + ". Boat Menu");
+    System.out.println(quit + ". Quit");
   }
 
   /**
