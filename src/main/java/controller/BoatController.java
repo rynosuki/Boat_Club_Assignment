@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 
 import model.Boat;
+import model.Member;
 import view.BoatView;
 import view.View.MenuChoice;
 
@@ -36,16 +37,25 @@ public class BoatController {
   /**
    * Used to create boats and add them to the boats boatlist.
    */
-  public Boat addBoat() {
+  public Boat addBoat(ArrayList<Member> list) {
     try {
       String name = view.getInputValue("Name of boat: ");
+      
       String length = view.getInputValue("Length: ");
-      String type = view.getInputValue("Type of boat: ");
+      String type = view.getInputValue("Type of boat: ");for (Member m : list) {
+        ArrayList<Boat> boatlist = m.getBoatList();
+        for (Boat b : boatlist) {
+          if (b.getBoatId().equals(name)){
+            view.printMessage("A boat with that name already exists try something else");
+            addBoat(list);
+          }
+        }
+      }
       Boat tempModel = new Boat(name, type, Double.parseDouble(length));
       return tempModel;
     } catch (Exception e) {
       view.printMessage("One of the inputs was invalid, try again.");
-      addBoat();
+      addBoat(list);
     }
     return null;
   }

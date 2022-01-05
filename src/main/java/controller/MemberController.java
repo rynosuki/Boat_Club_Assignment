@@ -71,6 +71,10 @@ public class MemberController {
     this.list = this.reg.addMember(name, personalNumber);
   }
 
+  public ArrayList<Member> getmemberlist() {
+    return list;
+  }
+
   public MenuChoice printMenu() {
     view.printView();
     return view.getMenuChoice();

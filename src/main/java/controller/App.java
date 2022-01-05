@@ -56,7 +56,7 @@ public class App {
 
     switch (choice) {
       case ADD:
-        mcontroller.addBoatToMember(bcontroller.addBoat());
+        mcontroller.addBoatToMember(bcontroller.addBoat(mcontroller.getmemberlist()));
         break;
       case DEL:
         mcontroller.deleteBoat(bcontroller.chooseBoat(mcontroller.getMemberBoats()));
