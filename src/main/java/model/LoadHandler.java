@@ -33,25 +33,25 @@ public class LoadHandler implements FileHandler {
     memberList.add(tempMember);
 
     /* Boats */
-    Boat tempBoat = new Boat("S790", "sailboat", 6.5);
+    Boat tempBoat = new Boat("S790", "sailboat", 6.5, memberList);
     this.memberList.get(0).addBoat(tempBoat);
 
-    tempBoat = new Boat("S540", "sailboat", 10.0);
+    tempBoat = new Boat("S540", "sailboat", 10.0, memberList);
     this.memberList.get(0).addBoat(tempBoat);
 
-    tempBoat = new Boat("MS100", "motorsailor", 17.2);
+    tempBoat = new Boat("MS100", "motorsailor", 17.2, memberList);
     this.memberList.get(1).addBoat(tempBoat);
 
-    tempBoat = new Boat("MS069", "motorsailor", 20);
+    tempBoat = new Boat("MS069", "motorsailor", 20, memberList);
     this.memberList.get(2).addBoat(tempBoat);
 
-    tempBoat = new Boat("K023", "kayak", 5.5);
+    tempBoat = new Boat("K023", "kayak", 5.5, memberList);
     this.memberList.get(3).addBoat(tempBoat);
 
-    tempBoat = new Boat("K378", "kayak", 4.8);
+    tempBoat = new Boat("K378", "kayak", 4.8, memberList);
     this.memberList.get(4).addBoat(tempBoat);
 
-    tempBoat = new Boat("C902", "canoe", 4.9);
+    tempBoat = new Boat("C902", "canoe", 4.9, memberList);
     this.memberList.get(5).addBoat(tempBoat);
   }
 

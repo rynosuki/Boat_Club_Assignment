@@ -18,8 +18,8 @@ public class BoatController {
     view = new BoatView();
   }
 
-  public void setBoatId(String name) {
-    model.setBoatId(name);
+  public void setBoatId(String name, ArrayList<Member> list) {
+    model.setBoatId(name, list);
   }
 
   public String getBoatName() {
@@ -42,16 +42,8 @@ public class BoatController {
       String name = view.getInputValue("Name of boat: ");
       
       String length = view.getInputValue("Length: ");
-      String type = view.getInputValue("Type of boat: ");for (Member m : list) {
-        ArrayList<Boat> boatlist = m.getBoatList();
-        for (Boat b : boatlist) {
-          if (b.getBoatId().equals(name)){
-            view.printMessage("A boat with that name already exists try something else");
-            addBoat(list);
-          }
-        }
-      }
-      Boat tempModel = new Boat(name, type, Double.parseDouble(length));
+      String type = view.getInputValue("Type of boat: ");
+      Boat tempModel = new Boat(name, type, Double.parseDouble(length), list);
       return tempModel;
     } catch (Exception e) {
       view.printMessage("One of the inputs was invalid, try again.");
@@ -72,12 +64,12 @@ public class BoatController {
   /**
    * Used to change boat info, user provides which boat needs to be changed.
    */
-  public void changeBoat(ArrayList<Boat> list) {
+  public void changeBoat(ArrayList<Boat> list, ArrayList<Member> mlist) {
     this.model = view.boatChoice(list);
     int choice = view.changeChoice();
     switch (choice) {
       case 1:
-        setBoatId(view.getInputValue("Enter new name for boat:"));
+        setBoatId(view.getInputValue("Enter new name for boat:"),mlist);
         break;
       case 2:
         setBoatType(view.getInputValue("Enter new type for boat:"));

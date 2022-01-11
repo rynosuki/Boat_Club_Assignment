@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * Model of the boat class.
  */
@@ -17,8 +19,8 @@ public class Boat {
    * 
    * @param length Length of boat.
    */
-  public Boat(String boatId, String type, double length) {
-    this.boatId = boatId;
+  public Boat(String boatId, String type, double length, ArrayList<Member> list) {
+    setBoatId(boatId, list);
     this.type = type;
     this.length = length;
   }
@@ -35,8 +37,19 @@ public class Boat {
     return this.length;
   }
 
-  public void setBoatId(String boatId) {
-    this.boatId = boatId;
+  public void setBoatId(String boatId, ArrayList<Member> list) {
+    for (Member m : list) {
+      ArrayList<Boat> boatlist = m.getBoatList();
+      for (Boat b : boatlist) {
+        if (b.getBoatId().equals(boatId)){
+          //TODO implement what happens if duplicate is found
+        }
+        else{
+          this.boatId = boatId;  //TODO move to seperate private method
+        }
+      }
+    }
+    this.boatId = boatId;  //TODO Delete this line
   }
 
   public void setType(String type) {

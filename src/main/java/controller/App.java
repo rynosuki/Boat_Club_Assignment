@@ -62,7 +62,7 @@ public class App {
         mcontroller.deleteBoat(bcontroller.chooseBoat(mcontroller.getMemberBoats()));
         break;
       case CHANGE:
-        bcontroller.changeBoat(mcontroller.getMemberBoats());
+        bcontroller.changeBoat(mcontroller.getMemberBoats(), mcontroller.getmemberlist());
         break;
       case QUIT:
         printMain();
