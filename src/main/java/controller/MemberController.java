@@ -5,9 +5,15 @@ import java.util.ArrayList;
 import model.Boat;
 import model.Member;
 import model.MemberRegister;
-import view.MemberView;
-import view.MemberView.ChoiceValue;
 import view.View.MenuChoice;
+
+// English view
+// import view.MemberView;
+// import view.MemberView.ChoiceValue;
+
+// Swedish view
+import view.MemberViewSwedish;
+import view.MemberViewSwedish.ChoiceValue;
 
 /**
  * Handles all the things related to the member object.
@@ -16,7 +22,12 @@ public class MemberController {
   private Member model;
   private ArrayList<Member> list;
   private MemberRegister reg;
-  private MemberView view;
+
+  // English view
+  // private MemberView view;
+
+  // Swedish view
+  private MemberViewSwedish view;
 
   /**
    * Member controller.
@@ -26,7 +37,12 @@ public class MemberController {
   public MemberController(MemberRegister memRegister) {
     this.list = memRegister.getListCopy();
     this.reg = memRegister;
-    view = new MemberView();
+    
+    // English view
+    // view = new MemberView();
+
+    // Swedish view
+    view = new MemberViewSwedish();
   }
 
   public void setMemberName(String name) {

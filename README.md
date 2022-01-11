@@ -28,5 +28,18 @@ Step 2: Choose from menu.
 1. Add Boat
 2. Remove Boat      
 3. Change Boat      
-4. Back to menu    
+4. Back to menu   
+
+## Second language
+To be able to switch language you need to comment and uncomment the code under the comment "English view" or "Swedish view" in the controller classes (App, BoatController, MemberController)
+
+### English
+- Classes: BoatView, MainView and MemberView
+- Uses numbers as input
+- Sorted by name
+
+### English
+- Classes: BoatViewSwedish, MainViewSwedish and MemberViewSwedish
+- Uses characters as input
+- Sorted by member ID
 

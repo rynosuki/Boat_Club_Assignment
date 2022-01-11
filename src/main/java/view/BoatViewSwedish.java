@@ -7,19 +7,15 @@ import model.Boat;
 /**
  * Handles the user inputs and user interface for the boat.
  */
-public class BoatView implements View {
-  public enum ChoiceValue {
-    ID, TYPE, QUIT
-  }
-
+public class BoatViewSwedish implements View {
   private InputHandler input;
 
-  private static final String add = "1";
-  private static final String del = "2";
-  private static final String change = "3";
-  private static final String quit = "4";
+  private static final String add = "a";
+  private static final String del = "d";
+  private static final String change = "c";
+  private static final String quit = "q";
 
-  public BoatView() {
+  public BoatViewSwedish() {
     this.input = new InputHandler();
   }
 
@@ -27,17 +23,16 @@ public class BoatView implements View {
    * Print the menu.
    */
   public void printView() {
-    System.out.println("Main Menu - Boat");
+    System.out.println("Huvudmeny - Båtar");
     System.out.println("--------------------");
-    System.out.println(add + ". Add Boat");
-    System.out.println(del + ". Remove Boat");
-    System.out.println(change + ". Change Boat");
-    System.out.println(quit + ". Back to menu");
+    System.out.println(add + ". Lägg till båt");
+    System.out.println(del + ". Ta bort båt");
+    System.out.println(change + ". Ändra båt");
+    System.out.println(quit + ". Återgå till menyn");
   }
 
   /**
    * Get menu choice.
-   * 
    * @return
    */
   public MenuChoice getMenuChoice() {
@@ -55,7 +50,6 @@ public class BoatView implements View {
     }
   }
 
-  
   public void printMessage(String message) {
     System.out.println(message);
   }
@@ -75,7 +69,7 @@ public class BoatView implements View {
    * @return returns the boat that is at the chosen value.
    */
   public Boat boatChoice(ArrayList<Boat> list) {
-    System.out.println("Select a boat: ");
+    System.out.println("Välj en båt: ");
     for (Boat b : list) {
       System.out.println(list.indexOf(b) + " " + b.getBoatId());
     }
@@ -89,15 +83,15 @@ public class BoatView implements View {
    * 
    * @return the integer choice of the user.
    */
-  public ChoiceValue changeChoice() {
-    System.out.println("What do you want to change? (Id, type)");
+  public int changeChoice() {
+    System.out.println("Vad vill du ändra? (Id, typ)");
     String temp = input.getInputString();
     if (temp.equalsIgnoreCase("Id")) {
-      return ChoiceValue.ID;
-    } else if (temp.equalsIgnoreCase("Type")) {
-      return ChoiceValue.TYPE;
+      return 1;
+    } else if (temp.equalsIgnoreCase("Typ")) {
+      return 2;
     }
-    return ChoiceValue.QUIT;
+    return 3;
   }
 
   public String getInputValue(String choice) {
@@ -112,9 +106,9 @@ public class BoatView implements View {
    */
   public void showOverview(Boat model) {
     System.out.println("iD: " + model.getBoatId());
-    System.out.println("Length: " + model.getLength());
-    System.out.println("Type: " + model.getType());
-    System.out.println("Press any key to continue.");
+    System.out.println("Längd: " + model.getLength());
+    System.out.println("Typ: " + model.getType());
+    System.out.println("Tryck på valfri tangent för att fortsätta");
     input.getInputString();
   }
 
@@ -124,12 +118,12 @@ public class BoatView implements View {
    * @param boatList A list conatining boats.
    */
   public void boatInformation(ArrayList<Boat> boatList) {
-    System.out.println("- Boats ---");
+    System.out.println("- Båtar ---");
     System.out.println("|");
     for (Boat boat : boatList) {
-      System.out.println("| Boat ID: " + boat.getBoatId());
-      System.out.println("| Type: " + boat.getType());
-      System.out.println("| Length: " + boat.getLength());
+      System.out.println("| Båt ID: " + boat.getBoatId());
+      System.out.println("| Typ: " + boat.getType());
+      System.out.println("| Längd: " + boat.getLength());
       System.out.println("|");
     }
   }

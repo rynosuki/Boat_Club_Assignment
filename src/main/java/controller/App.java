@@ -2,7 +2,13 @@ package controller;
 
 import model.LoadHandler;
 import model.MemberRegister;
-import view.MainView;
+
+// English view
+// import view.MainView;
+
+// Swedish view
+import view.MainViewSwedish;
+
 import view.View.MenuChoice;
 
 /**
@@ -11,7 +17,12 @@ import view.View.MenuChoice;
 public class App {
   private MemberController mcontroller;
   private BoatController bcontroller;
-  private MainView mainView;
+  
+  // English view
+  // private MainView mainView;
+
+  // Swedish view
+  private MainViewSwedish mainView;
 
   /**
    * Application starting point.
@@ -27,7 +38,12 @@ public class App {
     LoadHandler lhandler = new LoadHandler();
     this.mcontroller = new MemberController(new MemberRegister(lhandler.getMemberList()));
     this.bcontroller = new BoatController();
-    this.mainView = new MainView();
+
+    // English view
+    // this.mainView = new MainView();
+
+    // Swedish view
+    this.mainView = new MainViewSwedish();
 
     printMain();
   }

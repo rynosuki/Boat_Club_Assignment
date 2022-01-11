@@ -9,34 +9,34 @@ import model.Member;
 /**
  * Used for all the user inputs and user interface.
  */
-public class MemberView implements View {
+public class MemberViewSwedish implements View {
   private InputHandler input = new InputHandler();
 
   public enum ChoiceValue {
     NAME, PERSONALNUMBER, NONE
   }
 
-  private static final String add = "1";
-  private static final String del = "2";
-  private static final String change = "3";
-  private static final String view = "4";
-  private static final String verbose = "5";
-  private static final String compact = "6";
-  private static final String quit = "7";
+  private static final String add = "a";
+  private static final String del = "d";
+  private static final String change = "c";
+  private static final String view = "v";
+  private static final String verbose = "ve";
+  private static final String compact = "co";
+  private static final String quit = "q";
 
   /**
    * Prints out the main menu for members.
    */
   public void printView() {
-    System.out.println("Main Menu - Member");
+    System.out.println("Huvudmeny - Medlemmar");
     System.out.println("--------------------");
-    System.out.println(add + ". Add member");
-    System.out.println(del + ". Delete member");
-    System.out.println(change + ". Change member");
-    System.out.println(view + ". View member details");
-    System.out.println(verbose + ". Show verbose list");
-    System.out.println(compact + ". Show compact list");
-    System.out.println(quit + ". Return to menu");
+    System.out.println(add + ". Lägg till medlem");
+    System.out.println(del + ". Radera medlem");
+    System.out.println(change + ". Ändra medlem");
+    System.out.println(view + ". Visa detaljer för medlem");
+    System.out.println(verbose + ". Visa fullständig lista");
+    System.out.println(compact + ". Visa kompakt lista");
+    System.out.println(quit + ". Återgå till menyn");
   }
 
   /**
@@ -69,7 +69,7 @@ public class MemberView implements View {
     Collections.sort(list, new Comparator<Member>() {
       @Override
       public int compare(Member s1, Member s2) {
-        return s1.getName().compareToIgnoreCase(s2.getName());
+        return s1.getMemberId().compareToIgnoreCase(s2.getMemberId());
       }
     });
     return list;
@@ -96,9 +96,9 @@ public class MemberView implements View {
    * @return returns the member that is at the chosen value.
    */
   public Member memberChoice(ArrayList<Member> list) {
-    System.out.println("Select a member: ");
+    System.out.println("Välj en medlem: ");
     printMemberList(list);
-    System.out.println("Choose member: ");
+    System.out.println("Välj en medlem:: ");
     String temp = input.getInputString();
     try {
       return list.get(Integer.parseInt(temp));
@@ -113,11 +113,11 @@ public class MemberView implements View {
    * @return the integer choice of the user.
    */
   public ChoiceValue changeChoice() {
-    System.out.println("What do you want to change? (Name, Personalnumber)");
+    System.out.println("Vad vill du ändra? (Namn, Personnummer)");
     String temp = input.getInputString();
-    if (temp.equalsIgnoreCase("Name")) {
+    if (temp.equalsIgnoreCase("Namn")) {
       return ChoiceValue.NAME;
-    } else if (temp.equalsIgnoreCase("Personalnumber")) {
+    } else if (temp.equalsIgnoreCase("Personnummer")) {
       return ChoiceValue.PERSONALNUMBER;
     }
     return ChoiceValue.NONE;
@@ -134,10 +134,10 @@ public class MemberView implements View {
    * @param model model is the member that is currently looked at.
    */
   public void showOverview(Member model) {
-    System.out.println("Name: " + model.getName());
-    System.out.println("Personalnumber: " + model.getPersonalNumber());
-    System.out.println("MemberID: " + model.getMemberId());
-    System.out.println("Press any key to continue.");
+    System.out.println("Namn: " + model.getName());
+    System.out.println("Personnummer: " + model.getPersonalNumber());
+    System.out.println("Medlem ID: " + model.getMemberId());
+    System.out.println("Tryck på valfri tangent för att fortsätta");
     input.getInputString();
   }
 
@@ -153,9 +153,9 @@ public class MemberView implements View {
 
     for (Member m : list) {
       System.out.println();
-      System.out.println("- MEMBER (Verbose list) ---------");
-      System.out.println("| Name: " + m.getName() + " (" + m.getPersonalNumber() + ")");
-      System.out.println("| Member ID: " + m.getMemberId());
+      System.out.println("- MEDLEM (Fullstandig lista) ---------");
+      System.out.println("| Namn: " + m.getName() + " (" + m.getPersonalNumber() + ")");
+      System.out.println("| Medlem ID: " + m.getMemberId());
       System.out.println("|");
 
       // Prints boat information
@@ -175,12 +175,12 @@ public class MemberView implements View {
 
     for (Member m : list) {
       System.out.println();
-      System.out.println("- MEMBER (Compact list) -----");
-      System.out.println("| Name: " + m.getName());
-      System.out.println("| Member ID: " + m.getMemberId());
+      System.out.println("- MEDLEM (Kompakt lista) -----");
+      System.out.println("| Namn: " + m.getName());
+      System.out.println("| Medlem ID: " + m.getMemberId());
 
       int numberOfBoats = m.getBoatList().size();
-      System.out.println("| Number of boats: " + numberOfBoats);
+      System.out.println("| Antal båtar: " + numberOfBoats);
       System.out.println("-----------------------------");
     }
   }

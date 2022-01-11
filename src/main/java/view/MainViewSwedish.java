@@ -3,23 +3,23 @@ package view;
 /**
  * View for handling user inputs and user interface for Main Menu.
  */
-public class MainView implements View {
+public class MainViewSwedish implements View {
   InputHandler input = new InputHandler();
 
-  private static final String member = "1";
-  private static final String boat = "2";
-  private static final String quit = "3";
+  private static final String member = "m";
+  private static final String boat = "b";
+  private static final String quit = "q";
 
-  public MainView() {
+  public MainViewSwedish() {
   }
 
   @Override
   public void printView() {
-    System.out.println("Main Menu - Main");
+    System.out.println("Huvudmeny - Start");
     System.out.println("--------------------");
-    System.out.println(member + ". Member Menu");
-    System.out.println(boat + ". Boat Menu");
-    System.out.println(quit + ". Quit");
+    System.out.println(member + ". Medlemmar");
+    System.out.println(boat + ". Båtar");
+    System.out.println(quit + ". Avsluta");
   }
 
   /**
