@@ -8,6 +8,10 @@ import model.Boat;
  * Handles the user inputs and user interface for the boat.
  */
 public class BoatView implements View {
+  public enum ChoiceValue {
+    ID, TYPE, QUIT
+  }
+
   private InputHandler input;
 
   private static final String add = "1";
@@ -33,6 +37,7 @@ public class BoatView implements View {
 
   /**
    * Get menu choice.
+   * 
    * @return
    */
   public MenuChoice getMenuChoice() {
@@ -84,15 +89,15 @@ public class BoatView implements View {
    * 
    * @return the integer choice of the user.
    */
-  public int changeChoice() {
+  public ChoiceValue changeChoice() {
     System.out.println("What do you want to change? (Id, type)");
     String temp = input.getInputString();
     if (temp.equalsIgnoreCase("Id")) {
-      return 1;
+      return ChoiceValue.ID;
     } else if (temp.equalsIgnoreCase("Type")) {
-      return 2;
+      return ChoiceValue.TYPE;
     }
-    return 3;
+    return ChoiceValue.QUIT;
   }
 
   public String getInputValue(String choice) {

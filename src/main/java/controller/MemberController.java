@@ -74,13 +74,21 @@ public class MemberController {
    */
   public void addMember() {
     String name = view.getInputValue("Name of person: (2+ characters) ");
+    // Just checks if name is longer than two letters otherwise try again.
     if (name.length() < 3) {
       view.printMessage("Too short.");
       addMember();
       return;
     }
     String personalNumber = view.getInputValue("Personalnumber: ");
+
+    // Asks memberregister to create the member with name and personalnumber,
+    // then gets an updated copy of the list in return.
     this.list = this.reg.addMember(name, personalNumber);
+  }
+
+  public ArrayList<Member> getmemberlist() {
+    return list;
   }
 
   public MenuChoice printMenu() {

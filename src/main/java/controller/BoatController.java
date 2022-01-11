@@ -3,6 +3,9 @@ package controller;
 import java.util.ArrayList;
 
 import model.Boat;
+import model.Member;
+import view.BoatView;
+import view.BoatView.ChoiceValue;
 import view.View.MenuChoice;
 
 // English view
@@ -16,13 +19,8 @@ import view.BoatViewSwedish;
  * Handles all the things related to the boat object.
  */
 public class BoatController {
-  private Boat model;
-  
-  // English view
-  // private BoatView view;
-
-  // Swedish view
-  private BoatViewSwedish view;
+  private Boat model = new Boat("temp", "temp", 1);
+  private BoatView view;
 
   public BoatController() {
     // English view
@@ -33,8 +31,8 @@ public class BoatController {
 
   }
 
-  public void setBoatId(String name) {
-    model.setBoatId(name);
+  public boolean setBoatId(String name, ArrayList<Member> list) {
+    return model.setBoatId(name, list);
   }
 
   public String getBoatName() {
@@ -52,18 +50,29 @@ public class BoatController {
   /**
    * Used to create boats and add them to the boats boatlist.
    */
-  public Boat addBoat() {
+  public Boat addBoat(ArrayList<Member> list) {
     try {
-      String name = view.getInputValue("Name of boat: ");
+      String name;
+      boolean denied;
+      do {
+        name = view.getInputValue("Name of boat: ");
+        denied = model.checkId(name, list);
+        if (denied) {
+          view.printMessage("There's a boat with that name, try again. \n");
+        }
+      } while (denied);
+
       String length = view.getInputValue("Length: ");
       String type = view.getInputValue("Type of boat: ");
-      Boat tempModel = new Boat(name, type, Double.parseDouble(length));
+      Boat tempModel = new Boat(name, type, Double.parseDouble(length), list);
       return tempModel;
     } catch (Exception e) {
-      System.out.println("One of the inputs was invalid, try again.");
-      addBoat();
+      System.out.println(e);
+      view.printMessage("One of the inputs was invalid, try again.");
+      addBoat(list);
     }
     return null;
+
   }
 
   public MenuChoice printMenu() {
@@ -78,17 +87,23 @@ public class BoatController {
   /**
    * Used to change boat info, user provides which boat needs to be changed.
    */
-  public void changeBoat(ArrayList<Boat> list) {
+  public void changeBoat(ArrayList<Boat> list, ArrayList<Member> mlist) {
     this.model = view.boatChoice(list);
-    int choice = view.changeChoice();
+    ChoiceValue choice = view.changeChoice();
     switch (choice) {
-      case 1:
-        setBoatId(view.getInputValue("Enter new name for boat:"));
+      case ID:
+        boolean denied;
+        do {
+          denied = setBoatId(view.getInputValue("Enter new name for boat:"), mlist);
+          if (denied) {
+            view.printMessage("There is a boat with that name, try again. \n");
+          }
+        } while (denied);
         break;
-      case 2:
+      case TYPE:
         setBoatType(view.getInputValue("Enter new type for boat:"));
         break;
-      case 3:
+      case QUIT:
         break;
       default:
         break;
