@@ -9,7 +9,10 @@ The application uses the model-view-controller (MVC) architectural pattern. The 
 ## Detailed Design
 ### Class Diagram
 Final class diagram 
-![final class diagram](img/last-updated-diagram.jpeg)
+![final class diagram](img/class-diagram2201.png)
+
+Old final class diagram 2
+![Old final class diagram 2](img/last-updated-diagram.jpeg)
 
 Old final class diagram
 ![old final class diagram](img/new_updated_diagram.jpeg)
