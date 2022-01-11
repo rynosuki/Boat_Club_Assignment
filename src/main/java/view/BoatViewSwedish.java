@@ -33,6 +33,7 @@ public class BoatViewSwedish implements View {
 
   /**
    * Get menu choice.
+   * 
    * @return
    */
   public MenuChoice getMenuChoice() {
@@ -50,8 +51,22 @@ public class BoatViewSwedish implements View {
     }
   }
 
-  public void printMessage(String message) {
-    System.out.println(message);
+  /**
+   * Send out error messages in SWEDISH.
+   * 
+   * @param message the message that wants to be printed.
+   */
+  public void printErrorMessage(ErrorMessage message) {
+    switch (message) {
+      case NAMEERROR:
+        System.out.println("Det finns en båt med det namnet, försök igen! \n");
+        break;
+      case ANYERROR:
+        System.out.println("Något är fel med din input, försök igen! \n");
+        break;
+      default:
+        break;
+    }
   }
 
   /**
@@ -83,20 +98,33 @@ public class BoatViewSwedish implements View {
    * 
    * @return the integer choice of the user.
    */
-  public int changeChoice() {
+  public ChoiceValue changeChoice() {
     System.out.println("Vad vill du ändra? (Id, typ)");
     String temp = input.getInputString();
     if (temp.equalsIgnoreCase("Id")) {
-      return 1;
+      return ChoiceValue.ID;
     } else if (temp.equalsIgnoreCase("Typ")) {
-      return 2;
+      return ChoiceValue.TYPE;
     }
-    return 3;
+    return ChoiceValue.QUIT;
   }
 
-  public String getInputValue(String choice) {
-    System.out.println(choice);
+  public String getInputValue(MessageRelated choice) {
+    System.out.println(retrieveInputValue(choice));
     return input.getInputString();
+  }
+
+  private String retrieveInputValue(MessageRelated choice) {
+    switch (choice) {
+      case NAME:
+        return "Skriv in båtnamn: ";
+      case BOATTYPE:
+        return "Skriv in båttyp: ";
+      case BOATLENGTH:
+        return "Skriv in båtlängd: ";
+      default:
+        return null;
+    }
   }
 
   /**

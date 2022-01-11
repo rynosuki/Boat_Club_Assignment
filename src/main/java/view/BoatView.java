@@ -8,10 +8,6 @@ import model.Boat;
  * Handles the user inputs and user interface for the boat.
  */
 public class BoatView implements View {
-  public enum ChoiceValue {
-    ID, TYPE, QUIT
-  }
-
   private InputHandler input;
 
   private static final String add = "1";
@@ -55,9 +51,38 @@ public class BoatView implements View {
     }
   }
 
-  
-  public void printMessage(String message) {
-    System.out.println(message);
+  /**
+   * Prints error message based on what the user wants to do.
+   */
+  public void printErrorMessage(ErrorMessage message) {
+    switch (message) {
+      case ANYERROR:
+        System.out.println("There was an error in your input, try again! \n");
+        break;
+      case NAMEERROR:
+        System.out.println("That name is already used, try another one! \n");
+        break;
+      default:
+        break;
+    }
+  }
+
+  public String getInputValue(MessageRelated choice) {
+    System.out.println(retrieveInputValue(choice));
+    return input.getInputString();
+  }
+
+  private String retrieveInputValue(MessageRelated choice) {
+    switch (choice) {
+      case NAME:
+        return "Enter a boatname: ";
+      case BOATTYPE:
+        return "Enter the boattype: ";
+      case BOATLENGTH:
+        return "Enter the boatlength: ";
+      default:
+        return null;
+    }
   }
 
   /**
@@ -98,11 +123,6 @@ public class BoatView implements View {
       return ChoiceValue.TYPE;
     }
     return ChoiceValue.QUIT;
-  }
-
-  public String getInputValue(String choice) {
-    System.out.println(choice);
-    return input.getInputString();
   }
 
   /**

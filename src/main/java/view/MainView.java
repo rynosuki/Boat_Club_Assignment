@@ -24,6 +24,7 @@ public class MainView implements View {
 
   /**
    * Get menu choice.
+   * 
    * @return
    */
   public MenuChoice getMenuChoice() {
@@ -39,8 +40,8 @@ public class MainView implements View {
     }
   }
 
-  public void printMessage(String message) {
-    System.out.println(message);
+  public void printErrorMessage(ErrorMessage message) {
+
   }
 
   public int getChoice() {

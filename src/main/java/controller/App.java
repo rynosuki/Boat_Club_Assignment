@@ -4,10 +4,10 @@ import model.LoadHandler;
 import model.MemberRegister;
 
 // English view
-// import view.MainView;
+import view.MainView;
 
 // Swedish view
-import view.MainViewSwedish;
+//import view.MainViewSwedish;
 
 import view.View.MenuChoice;
 
@@ -17,12 +17,12 @@ import view.View.MenuChoice;
 public class App {
   private MemberController mcontroller;
   private BoatController bcontroller;
-  
+
   // English view
-  // private MainView mainView;
+  private MainView mainView;
 
   // Swedish view
-  private MainViewSwedish mainView;
+  // private MainViewSwedish mainView;
 
   /**
    * Application starting point.
@@ -40,17 +40,20 @@ public class App {
     this.bcontroller = new BoatController();
 
     // English view
-    // this.mainView = new MainView();
+    this.mainView = new MainView();
 
     // Swedish view
-    this.mainView = new MainViewSwedish();
+    // this.mainView = new MainViewSwedish();
 
     printMain();
   }
 
   private void printMain() {
     mainView.printView();
-    MenuChoice choice = mainView.getMenuChoice();
+    MenuChoice choice;
+    do {
+      choice = mainView.getMenuChoice();
+    } while (choice == null);
     switch (choice) {
       case MEMBER:
         memberChoice();

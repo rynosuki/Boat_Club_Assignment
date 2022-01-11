@@ -5,29 +5,32 @@ import java.util.ArrayList;
 import model.Boat;
 import model.Member;
 import view.BoatView;
-import view.BoatView.ChoiceValue;
+//import view.BoatViewSwedish;
+import view.View.ChoiceValue;
+import view.View.ErrorMessage;
 import view.View.MenuChoice;
-
-// English view
-// import view.BoatView;
-
-// Swedish view
-import view.BoatViewSwedish;
-
+import view.View.MessageRelated;
 
 /**
  * Handles all the things related to the boat object.
  */
 public class BoatController {
   private Boat model = new Boat("temp", "temp", 1);
+  // English view
   private BoatView view;
 
+  // Swedish view
+  // private BoatViewSwedish view;
+
+  /**
+   * Creates the controller to work with boats.
+   */
   public BoatController() {
     // English view
-    // view = new BoatView();
+    view = new BoatView();
 
     // Swedish view
-    view = new BoatViewSwedish();
+    // view = new BoatViewSwedish();
 
   }
 
@@ -55,20 +58,19 @@ public class BoatController {
       String name;
       boolean denied;
       do {
-        name = view.getInputValue("Name of boat: ");
+        name = view.getInputValue(MessageRelated.NAME);
         denied = model.checkId(name, list);
         if (denied) {
-          view.printMessage("There's a boat with that name, try again. \n");
+          view.printErrorMessage(ErrorMessage.NAMEERROR);
         }
       } while (denied);
 
-      String length = view.getInputValue("Length: ");
-      String type = view.getInputValue("Type of boat: ");
+      String length = view.getInputValue(MessageRelated.BOATLENGTH);
+      String type = view.getInputValue(MessageRelated.BOATTYPE);
       Boat tempModel = new Boat(name, type, Double.parseDouble(length), list);
       return tempModel;
     } catch (Exception e) {
-      System.out.println(e);
-      view.printMessage("One of the inputs was invalid, try again.");
+      view.printErrorMessage(ErrorMessage.ANYERROR);
       addBoat(list);
     }
     return null;
@@ -94,14 +96,14 @@ public class BoatController {
       case ID:
         boolean denied;
         do {
-          denied = setBoatId(view.getInputValue("Enter new name for boat:"), mlist);
+          denied = setBoatId(view.getInputValue(MessageRelated.NAME), mlist);
           if (denied) {
-            view.printMessage("There is a boat with that name, try again. \n");
+            view.printErrorMessage(ErrorMessage.ANYERROR);
           }
         } while (denied);
         break;
       case TYPE:
-        setBoatType(view.getInputValue("Enter new type for boat:"));
+        setBoatType(view.getInputValue(MessageRelated.BOATTYPE));
         break;
       case QUIT:
         break;

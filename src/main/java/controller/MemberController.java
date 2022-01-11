@@ -5,15 +5,17 @@ import java.util.ArrayList;
 import model.Boat;
 import model.Member;
 import model.MemberRegister;
+import view.View.ChoiceValue;
+import view.View.ErrorMessage;
 import view.View.MenuChoice;
+import view.View.MessageRelated;
 
 // English view
-// import view.MemberView;
+import view.MemberView;
 // import view.MemberView.ChoiceValue;
 
 // Swedish view
-import view.MemberViewSwedish;
-import view.MemberViewSwedish.ChoiceValue;
+//import view.MemberViewSwedish;
 
 /**
  * Handles all the things related to the member object.
@@ -24,10 +26,10 @@ public class MemberController {
   private MemberRegister reg;
 
   // English view
-  // private MemberView view;
+  private MemberView view;
 
   // Swedish view
-  private MemberViewSwedish view;
+  // private MemberViewSwedish view;
 
   /**
    * Member controller.
@@ -37,12 +39,12 @@ public class MemberController {
   public MemberController(MemberRegister memRegister) {
     this.list = memRegister.getListCopy();
     this.reg = memRegister;
-    
+
     // English view
-    // view = new MemberView();
+    view = new MemberView();
 
     // Swedish view
-    view = new MemberViewSwedish();
+    // view = new MemberViewSwedish();
   }
 
   public void setMemberName(String name) {
@@ -73,14 +75,14 @@ public class MemberController {
    * Used to create members and add them to the memberlist.
    */
   public void addMember() {
-    String name = view.getInputValue("Name of person: (2+ characters) ");
+    String name = view.getInputValue(MessageRelated.NAME);
     // Just checks if name is longer than two letters otherwise try again.
     if (name.length() < 3) {
-      view.printMessage("Too short.");
+      view.printErrorMessage(ErrorMessage.NAMEERROR);
       addMember();
       return;
     }
-    String personalNumber = view.getInputValue("Personalnumber: ");
+    String personalNumber = view.getInputValue(MessageRelated.PERSONALNUMBER);
 
     // Asks memberregister to create the member with name and personalnumber,
     // then gets an updated copy of the list in return.
@@ -112,13 +114,13 @@ public class MemberController {
     ChoiceValue choice = view.changeChoice();
     switch (choice) {
       case NAME:
-        setMemberName(view.getInputValue("Enter new name for member:"));
+        setMemberName(view.getInputValue(MessageRelated.NAME));
         view.printMemberList(list);
         break;
       case PERSONALNUMBER:
-        setMemberPersonalNumber(view.getInputValue("Enter new personalnumber for member:"));
+        setMemberPersonalNumber(view.getInputValue(MessageRelated.PERSONALNUMBER));
         break;
-      case NONE:
+      case QUIT:
         break;
       default:
         break;

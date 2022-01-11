@@ -12,10 +12,6 @@ import model.Member;
 public class MemberView implements View {
   private InputHandler input = new InputHandler();
 
-  public enum ChoiceValue {
-    NAME, PERSONALNUMBER, NONE
-  }
-
   private static final String add = "1";
   private static final String del = "2";
   private static final String change = "3";
@@ -65,6 +61,12 @@ public class MemberView implements View {
     }
   }
 
+  /**
+   * Sorts the list based on a preference.
+   * 
+   * @param list list of members.
+   * @return sorted list.
+   */
   public ArrayList<Member> sortList(ArrayList<Member> list) {
     Collections.sort(list, new Comparator<Member>() {
       @Override
@@ -75,8 +77,20 @@ public class MemberView implements View {
     return list;
   }
 
-  public void printMessage(String message) {
-    System.out.println(message);
+  /**
+   * Prints the error message related to what the user is doing.
+   */
+  public void printErrorMessage(ErrorMessage message) {
+    switch (message) {
+      case ANYERROR:
+        System.out.println("There was an error in your input, try again! \n");
+        break;
+      case NAMEERROR:
+        System.out.println("That name is to short 2+, try another one! \n");
+        break;
+      default:
+        break;
+    }
   }
 
   /**
@@ -84,7 +98,7 @@ public class MemberView implements View {
    */
   public void printMemberList(ArrayList<Member> list) {
     list = sortList(list);
-    
+
     for (Member m : list) {
       System.out.println(list.indexOf(m) + " " + m.getName() + " " + m.getMemberId());
     }
@@ -120,12 +134,23 @@ public class MemberView implements View {
     } else if (temp.equalsIgnoreCase("Personalnumber")) {
       return ChoiceValue.PERSONALNUMBER;
     }
-    return ChoiceValue.NONE;
+    return ChoiceValue.QUIT;
   }
 
-  public String getInputValue(String choice) {
-    System.out.println(choice);
+  public String getInputValue(MessageRelated choice) {
+    System.out.println(retrieveInputValue(choice));
     return input.getInputString();
+  }
+
+  private String retrieveInputValue(MessageRelated choice) {
+    switch (choice) {
+      case NAME:
+        return "Name of person: (2+ characters): ";
+      case PERSONALNUMBER:
+        return "Enter your personalnumber: ";
+      default:
+        return null;
+    }
   }
 
   /**

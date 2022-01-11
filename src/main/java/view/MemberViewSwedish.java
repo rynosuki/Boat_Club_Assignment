@@ -12,10 +12,6 @@ import model.Member;
 public class MemberViewSwedish implements View {
   private InputHandler input = new InputHandler();
 
-  public enum ChoiceValue {
-    NAME, PERSONALNUMBER, NONE
-  }
-
   private static final String add = "a";
   private static final String del = "d";
   private static final String change = "c";
@@ -65,6 +61,12 @@ public class MemberViewSwedish implements View {
     }
   }
 
+  /**
+   * Sorts list.
+   * 
+   * @param list memberlist
+   * @return sorted list.
+   */
   public ArrayList<Member> sortList(ArrayList<Member> list) {
     Collections.sort(list, new Comparator<Member>() {
       @Override
@@ -75,8 +77,20 @@ public class MemberViewSwedish implements View {
     return list;
   }
 
-  public void printMessage(String message) {
-    System.out.println(message);
+  /**
+   * Prints errormessage related to what the user is doing.
+   */
+  public void printErrorMessage(ErrorMessage message) {
+    switch (message) {
+      case ANYERROR:
+        System.out.println("Du skrev in något fel, försöker igen. \n");
+        break;
+      case NAMEERROR:
+        System.out.println("Ditt namn är för kort, 2+ bokstäver. \n");
+        break;
+      default:
+        break;
+    }
   }
 
   /**
@@ -84,7 +98,7 @@ public class MemberViewSwedish implements View {
    */
   public void printMemberList(ArrayList<Member> list) {
     list = sortList(list);
-    
+
     for (Member m : list) {
       System.out.println(list.indexOf(m) + " " + m.getName() + " " + m.getMemberId());
     }
@@ -120,12 +134,23 @@ public class MemberViewSwedish implements View {
     } else if (temp.equalsIgnoreCase("Personnummer")) {
       return ChoiceValue.PERSONALNUMBER;
     }
-    return ChoiceValue.NONE;
+    return ChoiceValue.QUIT;
   }
 
-  public String getInputValue(String choice) {
-    System.out.println(choice);
+  public String getInputValue(MessageRelated choice) {
+    System.out.println(retrieveInputValue(choice));
     return input.getInputString();
+  }
+
+  private String retrieveInputValue(MessageRelated choice) {
+    switch (choice) {
+      case NAME:
+        return "Skriv in ditt namn (2+ bokstäver): ";
+      case PERSONALNUMBER:
+        return "Skriv ditt personnumber: ";
+      default:
+        return null;
+    }
   }
 
   /**

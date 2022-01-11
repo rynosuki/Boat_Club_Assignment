@@ -24,6 +24,7 @@ public class MainViewSwedish implements View {
 
   /**
    * Get menu choice.
+   * 
    * @return
    */
   public MenuChoice getMenuChoice() {
@@ -39,11 +40,11 @@ public class MainViewSwedish implements View {
     }
   }
 
-  public void printMessage(String message) {
-    System.out.println(message);
-  }
-
   public int getChoice() {
     return Integer.parseInt(input.getInputString());
+  }
+
+  @Override
+  public void printErrorMessage(ErrorMessage message) {
   }
 }
