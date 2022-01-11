@@ -2,7 +2,6 @@ package controller;
 
 import model.LoadHandler;
 import model.MemberRegister;
-import view.View.MenuChoice;
 
 // English view
 // import view.MainView;
@@ -10,6 +9,7 @@ import view.View.MenuChoice;
 // Swedish view
 import view.MainViewSwedish;
 
+import view.View.MenuChoice;
 
 /**
  * Responsible for staring the application.
