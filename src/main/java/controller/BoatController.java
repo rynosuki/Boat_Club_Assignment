@@ -54,20 +54,27 @@ public class BoatController {
    * Used to create boats and add them to the boats boatlist.
    */
   public Boat addBoat(ArrayList<Member> list) {
-    String name;
-    boolean denied;
-    do {
-      name = view.getInputValue(MessageRelated.NAME);
-      denied = model.checkId(name, list);
-      if (denied) {
-        view.printErrorMessage(ErrorMessage.NAMEERROR);
-      }
-    } while (denied);
+    try {
+      String name;
+      boolean denied;
+      do {
+        name = view.getInputValue(MessageRelated.NAME);
+        denied = model.checkId(name, list);
+        if (denied) {
+          view.printErrorMessage(ErrorMessage.NAMEERROR);
+        }
+      } while (denied);
 
-    String length = view.getInputValue(MessageRelated.BOATLENGTH);
-    String type = view.getInputValue(MessageRelated.BOATTYPE);
-    Boat tempModel = new Boat(name, type, Double.parseDouble(length), list);
-    return tempModel;
+      String length = view.getInputValue(MessageRelated.BOATLENGTH);
+      String type = view.getInputValue(MessageRelated.BOATTYPE);
+      Boat tempModel = new Boat(name, type, Double.parseDouble(length), list);
+      return tempModel;
+    } catch (Exception e) {
+      view.printErrorMessage(ErrorMessage.ANYERROR);
+      addBoat(list);
+    }
+    return null;
+
   }
 
   public MenuChoice printMenu() {
