@@ -22,11 +22,12 @@ First sketch after discussion 2021-09-28, class diagram.
 
 
 ### Sequence Diagram
-
 Final sequence diagram
+![final sequence diagram](img/sequence-diagram2201.png)
 
+
+Old Final sequence diagram 2
 ![final sequence diagram](img/last-updated-sequence-diagram.jpeg)
 
 Old Final sequence diagram for adding a member.
-
 ![old final sequence diagram](img/Sequence_diagram.jpeg)
