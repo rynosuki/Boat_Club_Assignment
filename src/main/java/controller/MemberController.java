@@ -12,7 +12,6 @@ import view.View.MessageRelated;
 
 // English view
 import view.MemberView;
-// import view.MemberView.ChoiceValue;
 
 // Swedish view
 //import view.MemberViewSwedish;
