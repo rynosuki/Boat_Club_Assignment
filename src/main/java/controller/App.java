@@ -1,7 +1,6 @@
 package controller;
 
 import model.LoadHandler;
-import model.MemberRegister;
 
 // English view
 import view.MainView;
@@ -36,8 +35,8 @@ public class App {
 
   private void start() {
     LoadHandler lhandler = new LoadHandler();
-    this.mcontroller = new MemberController(new MemberRegister(lhandler.getMemberList()));
-    this.bcontroller = new BoatController();
+    this.mcontroller = new MemberController(lhandler.getMemberRegistry());
+    this.bcontroller = new BoatController(lhandler.getMemberRegistry());
 
     // English view
     this.mainView = new MainView();
@@ -75,7 +74,7 @@ public class App {
 
     switch (choice) {
       case ADD:
-        mcontroller.addBoatToMember(bcontroller.addBoat(mcontroller.getmemberlist()));
+        bcontroller.addBoat(mcontroller.getOwner());
         break;
       case DEL:
         mcontroller.deleteBoat(bcontroller.chooseBoat(mcontroller.getMemberBoats()));

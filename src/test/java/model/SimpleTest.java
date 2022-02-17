@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class SimpleTest {
   ArrayList<Member> members = new ArrayList<>();
-  MemberRegister reg = new MemberRegister(members);
+  MemberRegister reg = new MemberRegister();
   MemberController controller = new MemberController(reg);
 
   @Test

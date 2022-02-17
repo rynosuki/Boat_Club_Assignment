@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class MemberRegister {
   private ArrayList<Member> list;
 
-  public MemberRegister(ArrayList<Member> list) {
-    this.list = list;
+  public MemberRegister() {
+    this.list = new ArrayList<>();
   }
 
   public ArrayList<Member> getListCopy() {
@@ -34,5 +34,39 @@ public class MemberRegister {
 
   public int getListSize() {
     return list.size();
+  }
+
+  public Boolean createBoat(String name, String type, double length, Member owner) {
+    if (checkBoatId(name)) {
+      Boat tempBoat = new Boat(name, type, length);
+      list.get(list.indexOf(owner)).addBoat(tempBoat);
+      return true;
+    }
+    return false;
+  }
+
+  public boolean changeBoatId(String name, Boat boat) {
+    if (checkBoatId(name)) {
+      boat.setBoatId(name);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public boolean checkBoatId(String name) {
+    for (Member m : list) {
+      ArrayList<Boat> boatlist = m.getBoatList();
+      if (!boatlist.isEmpty()) {
+        for (Boat b : boatlist) {
+          if (b.getBoatId() != null) {
+            if (b.getBoatId().equals(name)) {
+              return false;
+            }
+          }
+        }
+      }
+    }
+    return true;
   }
 }

@@ -70,6 +70,10 @@ public class MemberController {
     this.model = view.memberChoice(list);
   }
 
+  protected Member getOwner() {
+    return this.model;
+  }
+
   /**
    * Used to create members and add them to the memberlist.
    */

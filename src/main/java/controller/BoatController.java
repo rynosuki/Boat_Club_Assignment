@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.Boat;
 import model.Member;
+import model.MemberRegister;
 import view.BoatView;
 //import view.BoatViewSwedish;
 import view.View.ChoiceValue;
@@ -15,9 +16,10 @@ import view.View.MessageRelated;
  * Handles all the things related to the boat object.
  */
 public class BoatController {
-  private Boat model = new Boat("temp", "temp", 1);
+  private Boat model;
   // English view
   private BoatView view;
+  private MemberRegister registry;
 
   // Swedish view
   // private BoatViewSwedish view;
@@ -25,17 +27,18 @@ public class BoatController {
   /**
    * Creates the controller to work with boats.
    */
-  public BoatController() {
+  public BoatController(MemberRegister registry) {
     // English view
     view = new BoatView();
 
     // Swedish view
     // view = new BoatViewSwedish();
 
+    this.registry = registry;
   }
 
-  public boolean setBoatId(String name, ArrayList<Member> list) {
-    return model.setBoatId(name, list);
+  public boolean setBoatId(String name) {
+    return registry.changeBoatId(name, model);
   }
 
   public String getBoatName() {
@@ -53,27 +56,25 @@ public class BoatController {
   /**
    * Used to create boats and add them to the boats boatlist.
    */
-  public Boat addBoat(ArrayList<Member> list) {
+  public void addBoat(Member owner) {
     try {
       String name;
       boolean denied;
       do {
         name = view.getInputValue(MessageRelated.NAME);
-        denied = model.checkId(name, list);
-        if (denied) {
+        denied = registry.checkBoatId(name);
+        if (!denied) {
           view.printErrorMessage(ErrorMessage.NAMEERROR);
         }
-      } while (denied);
+      } while (!denied);
 
       String length = view.getInputValue(MessageRelated.BOATLENGTH);
       String type = view.getInputValue(MessageRelated.BOATTYPE);
-      Boat tempModel = new Boat(name, type, Double.parseDouble(length), list);
-      return tempModel;
+      registry.createBoat(name, type, Double.parseDouble(length), owner);
     } catch (Exception e) {
       view.printErrorMessage(ErrorMessage.ANYERROR);
-      addBoat(list);
+      addBoat(owner);
     }
-    return null;
 
   }
 
@@ -96,11 +97,11 @@ public class BoatController {
       case ID:
         boolean denied;
         do {
-          denied = setBoatId(view.getInputValue(MessageRelated.NAME), mlist);
-          if (denied) {
+          denied = setBoatId(view.getInputValue(MessageRelated.NAME));
+          if (!denied) {
             view.printErrorMessage(ErrorMessage.ANYERROR);
           }
-        } while (denied);
+        } while (!denied);
         break;
       case TYPE:
         setBoatType(view.getInputValue(MessageRelated.BOATTYPE));
