@@ -1,17 +1,15 @@
 package controller;
 
 import java.util.ArrayList;
-
 import model.Boat;
 import model.Member;
 import model.MemberRegister;
+// English view
+import view.MemberView;
 import view.View.ChoiceValue;
 import view.View.ErrorMessage;
 import view.View.MenuChoice;
 import view.View.MessageRelated;
-
-// English view
-import view.MemberView;
 
 // Swedish view
 //import view.MemberViewSwedish;
@@ -34,6 +32,7 @@ public class MemberController {
    * Member controller.
    * 
    * @param memRegister Member register.
+   * 
    */
   public MemberController(MemberRegister memRegister) {
     this.list = memRegister.getListCopy();

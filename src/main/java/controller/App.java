@@ -1,13 +1,10 @@
 package controller;
 
 import model.LoadHandler;
-
 // English view
 import view.MainView;
-
 // Swedish view
 //import view.MainViewSwedish;
-
 import view.View.MenuChoice;
 
 /**

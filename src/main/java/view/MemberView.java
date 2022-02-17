@@ -38,7 +38,7 @@ public class MemberView implements View {
   /**
    * Get menu choice.
    * 
-   * @return
+   * @return .
    */
   public MenuChoice getMenuChoice() {
     switch (input.getInputString()) {

@@ -10,7 +10,7 @@ public class InputHandler {
 
   /**
    * Get input as string.
-   * @return
+   * @return .
    */
   public String getInputString() {
     try {
@@ -23,7 +23,7 @@ public class InputHandler {
 
   /**
    * Get input as Double.
-   * @return
+   * @return .
    */
   public double getInputDouble() {
     try {

@@ -1,7 +1,6 @@
 package view;
 
 import java.util.ArrayList;
-
 import model.Boat;
 
 /**
@@ -34,7 +33,7 @@ public class BoatViewSwedish implements View {
   /**
    * Get menu choice.
    * 
-   * @return
+   * @return menu choice.
    */
   public MenuChoice getMenuChoice() {
     switch (input.getInputString()) {

@@ -19,7 +19,7 @@ public class MemberRegister {
    * 
    * @param name           Name of member.
    * @param personalNumber Personalnumber of member.
-   * @return
+   * @return list copy.
    */
   public ArrayList<Member> addMember(String name, String personalNumber) {
     Member tempMember = new Member(
@@ -36,6 +36,14 @@ public class MemberRegister {
     return list.size();
   }
 
+  /**
+   * Create boat.
+   * @param name name of boat.
+   * @param type type of boat.
+   * @param length length of boat.
+   * @param owner the owner of the boat.
+   * @return trua/false.
+   */
   public Boolean createBoat(String name, String type, double length, Member owner) {
     if (checkBoatId(name)) {
       Boat tempBoat = new Boat(name, type, length);
@@ -45,6 +53,12 @@ public class MemberRegister {
     return false;
   }
 
+  /**
+   * CHange boat id(name).
+   * @param name boat name.
+   * @param boat the boat object.
+   * @return true/false.
+   */
   public boolean changeBoatId(String name, Boat boat) {
     if (checkBoatId(name)) {
       boat.setBoatId(name);
@@ -54,6 +68,11 @@ public class MemberRegister {
     }
   }
 
+  /**
+   * Check boat id(name).
+   * @param name name.
+   * @return true/false
+   */
   public boolean checkBoatId(String name) {
     for (Member m : list) {
       ArrayList<Boat> boatlist = m.getBoatList();

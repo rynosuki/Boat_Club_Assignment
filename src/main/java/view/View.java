@@ -11,14 +11,23 @@ public interface View {
     ADD, DEL, CHANGE, VIEW, VERBOSE, COMPACT, QUIT, BOAT, MEMBER
   }
 
+  /**
+   * Message.
+   */
   public enum MessageRelated {
     NAME, BOATTYPE, BOATLENGTH, PERSONALNUMBER,
   }
 
+  /**
+   * Error Message.
+   */
   public enum ErrorMessage {
     ANYERROR, NAMEERROR
   }
 
+  /**
+   * Choice value.
+   */
   public enum ChoiceValue {
     ID, TYPE, QUIT, NAME, PERSONALNUMBER
   }
