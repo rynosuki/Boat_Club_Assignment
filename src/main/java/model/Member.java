@@ -13,12 +13,12 @@ public class Member {
 
   /**
    * Creates a member object from input variables.
-
-   * @param name Name of member.
+   * 
+   * @param name           Name of member.
    * 
    * @param personalNumber Personal number of member.
    * 
-   * @param memberId Generated ID for member.
+   * @param memberId       Generated ID for member.
    * 
    */
   public Member(String name, String personalNumber, String memberId) {
@@ -40,13 +40,13 @@ public class Member {
   }
 
   public ArrayList<Boat> getBoatList() {
-    return this.boats;
+    return new ArrayList<Boat>(this.boats);
   }
 
   public void setName(String name) {
     this.name = name;
   }
-  
+
   public void setPersonalNumber(String personalNumber) {
     this.personalNumber = personalNumber;
   }
