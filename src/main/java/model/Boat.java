@@ -17,7 +17,7 @@ public class Boat {
    * 
    * @param length Length of boat.
    */
-  Boat(String boatId, String type, double length) {
+  protected Boat(String boatId, String type, double length) {
     this.boatId = boatId;
     this.type = type;
     this.length = length;
